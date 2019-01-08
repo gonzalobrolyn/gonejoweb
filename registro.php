@@ -28,7 +28,6 @@
 							<input type="text" class="form-control input-sm" name="ruc" id="ruc" title="RUC" placeholder="RUC"><p></p>
 							<input type="text" class="form-control input-sm" name="razon" id="razon" title="Razon Social" placeholder="Razon Social"><p></p>
               			<input type="text" class="form-control input-sm" name="direccion" id="direccion" title="Dirección" placeholder="Dirección"><p></p>
-              			<input type="text" class="form-control input-sm" name="ciudad" id="ciudad" title="Distrito Provincia Region" placeholder="Distrito Provincia Region"><p></p>
 							<div class="panel panel-footer">Al hacer click en Registrar, aceptas nuestras <a href="#">condiciones de servicio y politica de datos.</a></div>
 							<input type="reset" name="limpiar" value="Limpiar" class="btn btn-sm btn-default">
 							<a href="index.php" class="btn btn-info btn-sm">Regresar</a>

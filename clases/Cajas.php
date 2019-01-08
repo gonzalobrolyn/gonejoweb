@@ -32,18 +32,17 @@
       $c = new conectar();
       $conexion = $c->conexion();
       $fecha = date('Y-m-d H:i:s');
-      $llave = sha1($datos[5]);
+      $llave = sha1($datos[4]);
       $sql = "UPDATE caja
                  set caja_sede = '$datos[0]',
                      caja_direccion = '$datos[1]',
-                     caja_ciudad = '$datos[2]',
-                     caja_telefono = '$datos[3]',
-                     caja_logo = '$datos[4]',
+                     caja_telefono = '$datos[2]',
+                     caja_logo = '$datos[3]',
                      caja_llave = '$llave',
-                     caja_efectivo = '$datos[6]',
+                     caja_efectivo = '$datos[5]',
                      caja_fecha = '$fecha',
-                     caja_usuario = '$datos[7]'
-               where caja_id = '$datos[8]'";
+                     caja_usuario = '$datos[6]'
+               where caja_id = '$datos[7]'";
       return mysqli_query($conexion, $sql);
     }
 

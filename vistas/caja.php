@@ -22,7 +22,6 @@
             <input type="text" name="llave" id="llave" placeholder="Nueva Llave" title="Nueva Llave" class="form-control"><p></p>
             <input type="text" name="sede" id="sede" placeholder="Nombre de Local" title="Nombre de Local" class="form-control"><p></p>
             <input type="text" name="direccion" id="direccion" placeholder="Dirección" title="Dirección" class="form-control"><p></p>
-            <input type="text" name="ciudad" id="ciudad" placeholder="Distrito Provincia Region" title="Distrito Provincia Region" class="form-control"><p></p>
             <input type="text" name="telefono" id="telefono" placeholder="Telefono" title="Telefono" maxlength="9" class="form-control"><p></p>
             <input type="text" name="efectivo" id="efectivo" placeholder="Capital S/." title="Capital" class="form-control"><p></p>
             <caption>Logo</caption>

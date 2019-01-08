@@ -36,13 +36,12 @@
       if ($imagenID > 0) {
         $datosCaja[0] = $_POST['sede'];
         $datosCaja[1] = $_POST['direccion'];
-        $datosCaja[2] = $_POST['ciudad'];
-        $datosCaja[3] = $_POST['telefono'];
-        $datosCaja[4] = $imagenID;
-        $datosCaja[5] = $_POST['llave'];
-        $datosCaja[6] = $_POST['efectivo'];
-        $datosCaja[7] = $usuarioID;
-        $datosCaja[8] = $validar;
+        $datosCaja[2] = $_POST['telefono'];
+        $datosCaja[3] = $imagenID;
+        $datosCaja[4] = $_POST['llave'];
+        $datosCaja[5] = $_POST['efectivo'];
+        $datosCaja[6] = $usuarioID;
+        $datosCaja[7] = $validar;
         echo $objCaja->agregaCaja($datosCaja);
       } else {
         echo 0;
