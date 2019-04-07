@@ -43,7 +43,10 @@
              <span class="glyphicon glyphicon-list-alt"></span> Diario</a>
           </li>
           <?php if ($_SESSION['usuarioCargo']=="Empresa" || $_SESSION['usuarioCargo']=="Administrador"): ?>
-          <li class="dropdown">
+             <li><a href="compra.php">
+               <span class="glyphicon glyphicon-credit-card"></span> Compras</a>
+            </li>
+          <!--<li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-credit-card"></span> Compras y mas <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="deposito.php">Depositar y Comprar</a></li>
@@ -52,7 +55,7 @@
               <li><a href="#">Venta por Cobrar</a></li>
               <li><a href="#">Pagos Diversos</a></li>
             </ul>
-          </li>
+         </li>-->
           <?php endif; ?>
         </ul>
 

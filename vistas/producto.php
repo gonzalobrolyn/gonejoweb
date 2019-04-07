@@ -90,8 +90,10 @@
                </div>
                <div class="modal-body">
                   <form id="frmProductoU">
-                     <input type="text" hidden id="id" name="id">
-                     <input type="text" id="" name="" class="form-control input-sm">
+                     <input type="text" hidden id="idProductoU" name="idProductoU">
+                     <input type="text" name="modeloU" id="modeloU" placeholder="Modelo" title="Modelo" class="form-control"><p></p>
+                     <input type="text" name="descripcionU" id="descripcionU" placeholder="Descripcion" title="Descripcion" class="form-control"><p></p>
+                     <textarea rows="7" name="detalleU" id="detalleU" placeholder="Caracteristicas" title="Caracteristicas" class="form-control"></textarea>
                   </form>
                </div>
                <div class="modal-footer">
@@ -138,14 +140,23 @@
 </script>
 
 <script type="text/javascript">
-   $(document).ready(function(){
-      $('#btnActualizaGrupo').click(function(){
+   function agregaDato(modelo,descripcion,detalle,id){
+      $('#idProductoU').val(id);
+      $('#modeloU').val(modelo);
+      $('#descripcionU').val(descripcion);
+      $('#detalleU').val(detalle);
+   }
+</script>
 
-         datos=$('#frmGrupoU').serialize();
+<script type="text/javascript">
+   $(document).ready(function(){
+      $('#btnActualizaProducto').click(function(){
+
+         datos=$('#frmProductoU').serialize();
          $.ajax({
             type:"POST",
             data:datos,
-            url:"../procesos/grupos/actualizarGrupo.php",
+            url:"../procesos/productos/actualizarProducto.php",
             success:function(r){
                if(r==1){
                   $('#cargaTablaProducto').load('tablas/tablaProductos.php?grupo=<?php echo $grupoID;?>');

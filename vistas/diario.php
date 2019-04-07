@@ -10,6 +10,7 @@
    <head>
       <meta charset="utf-8">
       <title></title>
+      <script src="../librerias/printThis.js"></script>
    </head>
    <body>
       <div class="container-fluid">
@@ -22,7 +23,15 @@
             </div>
             <div class="col-sm-12">
               <div id="cargaTablaDiario"></div>
+              <p style="text-align: right">
+              <span class="btn btn-info" name="imprimeDiario" id="imprimeDiario">
+                 Imprimir Diario
+              </span>
+              </p>
             </div>
+         </div>
+         <div hidden>
+            <div class="formatoDiario" id="impFormatoDiario"></div>
          </div>
       </div>
    </body>
@@ -31,6 +40,11 @@
 <script type="text/javascript">
    $(document).ready(function(){
       $('#cargaTablaDiario').load("tablas/tablaDiario.php");
+      $('#impFormatoDiario').load("imprimir/impDiario.php");
+
+      $('#imprimeDiario').click(function(){
+         $('.formatoDiario').printThis();
+      });
    });
 </script>
 

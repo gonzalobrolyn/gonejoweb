@@ -128,5 +128,31 @@
         'precio' => $precio);
       return $data;
     }
+
+    public function actualizaProducto($datos){
+      $c = new conectar();
+      $conexion = $c->conexion();
+
+      $fecha = date('Y-m-d H:i:s');
+
+      $sqlPersona = "SELECT usuario_persona
+                       from usuario
+                       where usuario_id = '$datos[4]'";
+      $consulta = mysqli_query($conexion, $sqlPersona);
+      $resultadoPersona = mysqli_fetch_row($consulta)[0];
+
+      $sql = "UPDATE producto
+                  set producto_modelo = '$datos[1]',
+                      producto_descripcion = '$datos[2]',
+                      producto_detalle = '$datos[3]',
+                      producto_fecha = '$fecha',
+                      producto_persona = '$resultadoPersona'
+                where producto_id = '$datos[0]'";
+      echo mysqli_query($conexion,$sql);
+    }
+
+
+
+
   }
 ?>

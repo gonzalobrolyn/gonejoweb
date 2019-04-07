@@ -40,6 +40,7 @@
    <head>
       <meta charset="utf-8">
       <title></title>
+      <script src="../librerias/printThis.js"></script>
    </head>
    <body>
       <div class="container-fluid">
@@ -53,7 +54,7 @@
             <div class="col-sm-4" style="text-align: center">
                <button type="button" class="btn btn-info">Volver</button>
                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarEspecifi">Agregar dato</button>
-               <button type="button" class="btn btn-info">Imprimir</button>
+               <button type="button" class="btn btn-info" id="btnImprimirProducto" name="btnImprimirProducto">Imprimir</button>
                <p></p>
                <div class="col-sm-6">
                   <?php echo "Disponible: ".$ver[6]; ?>
@@ -101,6 +102,9 @@
             <div class="col-sm-7" id="cargaTablaEspecifi">
             </div>
          </div>
+         <div hidden>
+            <div class="formatoProducto" id="impFormatoProducto"></div>
+         </div>
       </div>
    </body>
 </html>
@@ -143,6 +147,16 @@
            $('#cargaTablaEspecifi').load("tablas/tablaEspecifi.php?idProd=<?php echo $ver[10]; ?>");
           }
         });
+      });
+   });
+</script>
+
+<script type="text/javascript">
+   $(document).ready(function(){
+      $('#impFormatoProducto').load("imprimir/impProducto.php?idProAlm="+<?php echo $idProAlm ?>);
+
+      $('#btnImprimirProducto').click(function(){
+         $('.formatoProducto').printThis();
       });
    });
 </script>

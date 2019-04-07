@@ -34,7 +34,8 @@
       $rRUC = mysqli_query($conexion, $sqlRUC);
 
       $sqlBusqueda = "SELECT alm.almacen_id,
-                             pro.producto_modelo
+                             pro.producto_modelo,
+                             pro.producto_codigo
                         from almacen as alm
                   inner join producto as pro
                           on alm.almacen_producto = pro.producto_id
@@ -123,7 +124,7 @@
                         <option value="A">Ingresa Modelo</option>
                         <?php while($verProd=mysqli_fetch_row($rProducto)): ?>
                         <option value="<?php echo $verProd[0]; ?>">
-                        <?php echo $verProd[1]; ?>
+                        <?php echo $verProd[2]." ".$verProd[1];  ?>
                         </option>
                         <?php endwhile; ?>
                      </select><p></p>

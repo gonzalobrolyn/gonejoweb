@@ -11,7 +11,8 @@
                      pro.producto_modelo,
                      pro.producto_descripcion,
                      pro.producto_detalle,
-                     img.imagen_ruta
+                     img.imagen_ruta,
+                     pro.producto_id
                 from producto as pro
           inner join marca as mar
                   on pro.producto_marca = mar.marca_id
@@ -47,7 +48,7 @@
             <img height="100" src="<?php echo $ruta ?>">
          </td>
          <td>
-            <span class="btn btn-danger btn-sm" data-toggle="modal" data-target="#actualizaProducto">
+            <span class="btn btn-danger btn-sm" data-toggle="modal" data-target="#actualizaProducto" onclick="agregaDato('<?php echo $ver[2] ?>','<?php echo $ver[3] ?>','<?php echo $ver[4] ?>','<?php echo $ver[6] ?>')">
    				<span class="glyphicon glyphicon-pencil"></span>
    			</span>
          </td>
