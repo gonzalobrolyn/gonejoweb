@@ -48,7 +48,7 @@
             <img height="100" src="<?php echo $ruta ?>">
          </td>
          <td>
-            <span class="btn btn-danger btn-sm" data-toggle="modal" data-target="#actualizaProducto" onclick="agregaDato('<?php echo $ver[2] ?>','<?php echo $ver[3] ?>','<?php echo $ver[4] ?>','<?php echo $ver[6] ?>')">
+            <span class="btn btn-danger btn-sm" data-toggle="modal" data-target="#actualizaProducto" onclick="agregaDato('<?php echo $ver[6]; ?>')">
    				<span class="glyphicon glyphicon-pencil"></span>
    			</span>
          </td>

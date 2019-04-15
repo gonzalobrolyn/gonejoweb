@@ -151,7 +151,25 @@
       echo mysqli_query($conexion,$sql);
     }
 
+    public function traeDatosProducto3($idProducto){
+     $c = new conectar();
+     $conexion = $c->conexion();
 
+     $sql = "SELECT producto_id,
+                    producto_modelo,
+                    producto_descripcion,
+                    producto_detalle
+               from producto
+              where producto_id = $idProducto";
+     $result = mysqli_query($conexion, $sql);
+     $ver = mysqli_fetch_row($result);
+     $data = array(
+      'producto' => $ver[0],
+      'modelo' => $ver[1],
+      'descripcion' => $ver[2],
+      'detalle' => $ver[3]);
+     return $data;
+   }
 
 
   }

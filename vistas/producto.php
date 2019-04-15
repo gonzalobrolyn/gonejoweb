@@ -140,18 +140,25 @@
 </script>
 
 <script type="text/javascript">
-   function agregaDato(modelo,descripcion,detalle,id){
-      $('#idProductoU').val(id);
-      $('#modeloU').val(modelo);
-      $('#descripcionU').val(descripcion);
-      $('#detalleU').val(detalle);
+   function agregaDato(idProd){
+      $.ajax({
+         type: "POST",
+         data: "productoID="+idProd,
+         url: "../procesos/productos/traerDatos.php",
+         success: function(r){
+            dato=jQuery.parseJSON(r);
+            $('#idProductoU').val(dato['producto']);
+            $('#modeloU').val(dato['modelo']);
+            $('#descripcionU').val(dato['descripcion']);
+            $('#detalleU').val(dato['detalle']);
+         }
+      });
    }
 </script>
 
 <script type="text/javascript">
    $(document).ready(function(){
       $('#btnActualizaProducto').click(function(){
-
          datos=$('#frmProductoU').serialize();
          $.ajax({
             type:"POST",
