@@ -8,7 +8,8 @@
   $objUsuario = new usuarios();
 
   $cajaID = $_SESSION['cajaID'];
-  $fecha = date('Y-m-d H:i:m');
+  $fechaLocal = time() - (7*60*60);
+  $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
   $datosPersona = array(
     $_POST['dni'],
     $_POST['nombre'],
@@ -23,7 +24,7 @@
       $_POST['cargo'],
       $_POST['sueldo'],
       $_POST['diapago'],
-      $fecha,
+      $fechaAhora,
       $personaID);
     echo $objUsuario->agregaUsuario($datosUsuario);
   } else {

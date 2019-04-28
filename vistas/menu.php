@@ -24,7 +24,7 @@
 
         <a class="navbar-brand" href="inicio.php">
           <span class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-fire" style="color: #22d0ff"></span> gonejo web</span>
+            <span class="glyphicon glyphicon-fire" style="color: #22d0ff"></span> GonejoWeb</span>
         </a>
       </div>
 
@@ -65,6 +65,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span> Reportes <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="movimientos.php">Movimientos</a></li>
+              <li><a href="inventario.php">Inventario</a></li>
             </ul>
           </li>
           <li class="dropdown">

@@ -7,7 +7,8 @@ session_start();
 	$obj= new compras();
   $movimiento = "Deposito";
   $comprobante = "Boucher";
-	$fecha = date('Y-m-d H:i:s');
+  $fechaLocal = time() - (7*60*60);
+  $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
   $idUsuario = $_SESSION['usuarioID'];
   $idCaja = $_SESSION['cajaID'];
 
@@ -18,7 +19,7 @@ session_start();
 			$comprobante,
 			$_POST['numerocom'],
 			$_POST['detalle'],
-			$fecha,
+			$fechaAhora,
       $idUsuario,
 			$idCaja);
 

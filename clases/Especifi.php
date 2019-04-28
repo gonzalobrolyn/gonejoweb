@@ -24,7 +24,8 @@
       $c = new conectar();
       $conexion = $c->conexion();
 
-       $fecha = date('Y-m-d H:i:s');
+      $fechaLocal = time() - (7*60*60);
+      $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
 
        $sqlPersona = "SELECT usuario_persona
                         from usuario
@@ -34,7 +35,7 @@
 
       $sql = "UPDATE marca
                  set marca_nombre = '$datos[1]',
-                     marca_fecha = '$fecha',
+                     marca_fecha = '$fechaAhora',
                      marca_persona = '$resultadoPersona'
                where marca_id = '$datos[0]'";
       echo mysqli_query($conexion,$sql);

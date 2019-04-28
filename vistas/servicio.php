@@ -49,9 +49,10 @@
             <span class="btn btn-success" id="btnRegistrar">Registrar</span>
           </form>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9" style="text-align: center">
           <h3>Lista de Servicios</h3>
           <div class="row">
+            <img class="img-responsive" src="../imagenes/enDesarrollo.jpg" alt="">
             <div id="cargaTablaAdelantos"></div>
           </div>
         </div>

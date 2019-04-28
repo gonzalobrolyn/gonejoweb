@@ -5,12 +5,13 @@
 	$objCliente = new clientes();
 	$clave = sha1($_POST['clave']);
 	$cargo = "Empresa";
-	$fecha = date('Y-m-d H:i:s');
+	$fechaLocal = time() - (7*60*60);
+	$fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
    $datos = array(
       $_POST['usuario'],
       $clave,
 		$cargo,
-		$fecha,
+		$fechaAhora,
 		$_POST['dni']
 	);
 	echo $objCliente->registroCliente($datos);

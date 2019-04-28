@@ -57,7 +57,8 @@
          $c = new conectar();
          $conexion = $c->conexion();
 
-         $fecha = date('Y-m-d H:i:s');
+         $fechaLocal = time() - (7*60*60);
+         $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
          $idUsuario = $_SESSION['usuarioID'];
          $idCaja = $_SESSION['cajaID'];
          $datoso = $_SESSION['listaVentaTmp'];
@@ -91,7 +92,7 @@
                                 '$efectivoCaja',
                                 '$movi[2]',
                                 '$nuevoEfe',
-                                '$fecha',
+                                '$fechaAhora',
                                 '$idPersona',
                                 '$idCaja')";
          $resVenta = mysqli_query($conexion, $sqlMov);
@@ -126,7 +127,7 @@
                                     '$nuevoCan',
                                     '$dAlma[2]',
                                     '$li[6]',
-                                    '$fecha',
+                                    '$fechaAhora',
                                     '$idMovi',
                                     '$idPersona')";
             $resSale = mysqli_query($conexion, $sqlSale);

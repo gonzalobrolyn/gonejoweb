@@ -31,7 +31,8 @@
     public function agregaCaja($datos){
       $c = new conectar();
       $conexion = $c->conexion();
-      $fecha = date('Y-m-d H:i:s');
+      $fechaLocal = time() - (7*60*60);
+      $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
       $llave = sha1($datos[4]);
       $sql = "UPDATE caja
                  set caja_sede = '$datos[0]',
@@ -40,11 +41,21 @@
                      caja_logo = '$datos[3]',
                      caja_llave = '$llave',
                      caja_efectivo = '$datos[5]',
-                     caja_fecha = '$fecha',
+                     caja_fecha = '$fechaAhora',
                      caja_usuario = '$datos[6]'
                where caja_id = '$datos[7]'";
       return mysqli_query($conexion, $sql);
     }
+
+    public function cierraCajaDiario($idCaja){
+      $c = new conectar();
+      $conexion = $c->conexion();
+      $sqlMovi = "UPDATE movimiento
+                     set movimiento_estado = '1'
+                   where movimiento_estado = '0'
+                     and movimiento_caja = '$idCaja'";
+      return mysqli_query($conexion, $sqlMovi);
+   }
 
   }
 ?>

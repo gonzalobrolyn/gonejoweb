@@ -13,7 +13,7 @@
    </head>
    <body>
       <div class="container-fluid">
-         <div class="row">
+         <div class="row" style="text-align:center">
             <div class="col-sm-6">
                <h2>Todos los Movimientos</h2>
             </div>

@@ -30,7 +30,8 @@
          $codigo = $resultFam * 1000 + 1;
       }
 
-      $fecha = date('Y-m-d H:i:s');
+      $fechaLocal = time() - (7*60*60);
+      $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
 
       $sqlPersona = "SELECT usuario_persona
                        from usuario
@@ -55,7 +56,7 @@
                           '$datos[3]',
                           '$datos[4]',
                           '$datos[5]',
-                          '$fecha',
+                          '$fechaAhora',
                           '$resultadoPersona')";
       return mysqli_query($conexion, $sql);
     }
@@ -133,7 +134,8 @@
       $c = new conectar();
       $conexion = $c->conexion();
 
-      $fecha = date('Y-m-d H:i:s');
+      $fechaLocal = time() - (7*60*60);
+      $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
 
       $sqlPersona = "SELECT usuario_persona
                        from usuario
@@ -145,7 +147,7 @@
                   set producto_modelo = '$datos[1]',
                       producto_descripcion = '$datos[2]',
                       producto_detalle = '$datos[3]',
-                      producto_fecha = '$fecha',
+                      producto_fecha = '$fechaAhora',
                       producto_persona = '$resultadoPersona'
                 where producto_id = '$datos[0]'";
       echo mysqli_query($conexion,$sql);

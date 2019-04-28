@@ -23,6 +23,7 @@
 
          $sqlMov = "INSERT into movimiento (
                                 movimiento_nombre,
+                                movimiento_estado,
                                 movimiento_persona,
                                 movimiento_efectivo,
                                 movimiento_monto,
@@ -34,6 +35,7 @@
                                 movimiento_persona_usu,
                                 movimiento_caja)
                         values ('$datos[0]',
+                                '1',
                                 '$datos[1]',
                                 '$efectivoCaja',
                                 '$datos[2]',
@@ -59,7 +61,8 @@
          $c = new conectar();
          $conexion = $c->conexion();
 
-         $fecha = date('Y-m-d H:i:s');
+         $fechaLocal = time() - (7*60*60);
+         $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
          $idUsuario = $_SESSION['usuarioID'];
          $idCaja = $_SESSION['cajaID'];
          $datoso = $_SESSION['listaCompraTmp'];
@@ -81,6 +84,7 @@
 
          $sqlMov = "INSERT into movimiento (
                                 movimiento_nombre,
+                                movimiento_estado,
                                 movimiento_persona,
                                 movimiento_efectivo,
                                 movimiento_monto,
@@ -91,13 +95,14 @@
                                 movimiento_persona_usu,
                                 movimiento_caja)
                         values ('$movi[0]',
+                                '1',
                                 '$movi[1]',
                                 '$efectivoCaja',
                                 '$movi[2]',
                                 '$nuevoEfe',
                                 '$movi[3]',
                                 '$movi[4]',
-                                '$fecha',
+                                '$fechaAhora',
                                 '$idPersona',
                                 '$idCaja')";
          $resCompra = mysqli_query($conexion, $sqlMov);
@@ -132,7 +137,7 @@
                                     '$nuevoCan',
                                     '$dAlma[2]',
                                     '$li[9]',
-                                    '$fecha',
+                                    '$fechaAhora',
                                     '$idMovi',
                                     '$idPersona')";
             $resEntra = mysqli_query($conexion, $sqlEntra);
@@ -142,6 +147,7 @@
                                            almacen_producto,
                                            almacen_cantidad,
                                            almacen_preciofactura,
+                                           almacen_precioempresa,
                                            almacen_preciotraspaso,
                                            almacen_preciorebaja,
                                            almacen_precioventa,
@@ -152,6 +158,7 @@
                                            '$li[10]',
                                            '$li[11]',
                                            '$li[12]',
+                                           '$li[13]',
                                            '$idCaja')";
                $resAlmacen = mysqli_query($conexion, $sqlAlmacena);
             } else {
@@ -161,9 +168,10 @@
                $sqlActualiza = "UPDATE almacen
                                    set almacen_cantidad = '$v3',
                                        almacen_preciofactura = ('$v1'+'$v2')/'$v3',
-                                       almacen_preciotraspaso = '$li[10]',
-                                       almacen_preciorebaja = '$li[11]',
-                                       almacen_precioventa = '$li[12]'
+                                       almacen_precioempresa = '$li[10]',
+                                       almacen_preciotraspaso = '$li[11]',
+                                       almacen_preciorebaja = '$li[12]',
+                                       almacen_precioventa = '$li[13]'
                                  where almacen_id = '$dAlma[0]'
                                    and almacen_producto = '$li[0]'
                                    and almacen_caja = '$idCaja'";
@@ -183,7 +191,8 @@
          $c = new conectar();
          $conexion = $c->conexion();
 
-         $fecha = date('Y-m-d H:i:s');
+         $fechaLocal = time() - (7*60*60);
+         $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
          $idMovimiento = $_SESSION['depositoID'];
          $idUsuario = $_SESSION['usuarioID'];
          $idCaja = $_SESSION['cajaID'];
@@ -223,7 +232,7 @@
                                      '$dAlma[1]'+'$d[5]',
                                      '$dAlma[2]',
                                      '$d[6]',
-                                     '$fecha',
+                                     '$fechaAhora',
                                      '$idMovimiento',
                                      '$idPersona')";
             $resEntra = mysqli_query($conexion, $sqlEntra);

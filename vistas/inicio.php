@@ -106,8 +106,8 @@
                      <br><br>
                      <h3>Gonejo Web</h3>
                      <h4>Control Dinamico de Caja y Almacen</h4> <br>
-                     <p>Sistema informático para la gestión de caja y almacen, con arquitectura de bases de datos escalable. Tiene modulos de compra, venta, servicios, pagos y mas.</p><br><br>
-                     <span class="btn btn-primary btn-sm">Manual para el Usuario</span>
+                     <p>Sistema informático para la gestión de caja y almacen de su empresa, con modulos para compra, venta, servicios, pagos y mas.</p><br><br>
+                     <span class="btn btn-primary">Manual en desarrollo</span>
                   </div>
                   <div class="col-sm-6">
                      <img src="../imagenes/monitor.png" class="img-responsive" />
@@ -311,7 +311,6 @@
          data: datos,
          url: "../procesos/ventas/venta.php",
          success:function(r){
-            alert(r);
             if(r > 0){
                $('#cargaTablaVentas').load("tablas/tablaVentasTmp.php");
                $('#frmCliente')[0].reset();

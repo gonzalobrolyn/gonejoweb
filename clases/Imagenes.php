@@ -8,7 +8,8 @@
          $c = new conectar();
          $conexion = $c->conexion();
 
-         $fecha = date('Y-m-d H:i:s');
+         $fechaLocal = time() - (7*60*60);
+         $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
 
          $sqlPersona = "SELECT usuario_persona
                           from usuario
@@ -21,7 +22,7 @@
                              imagen_fecha,
                              imagen_persona)
                      values ('$datos[0]',
-                             '$fecha',
+                             '$fechaAhora',
                              '$resultadoPersona')";
          $result = mysqli_query($conexion, $sql);
          return mysqli_insert_id($conexion);

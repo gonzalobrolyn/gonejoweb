@@ -19,6 +19,7 @@
   $detalle = $_POST['detalleC'];
   $cantidad = $_POST['cantidad'];
   $preciofactura = $_POST['preciofactura'];
+  $precioempresa = $_POST['precioempresa'];
   $preciotraspaso = $_POST['preciotraspaso'];
   $preciorebaja = $_POST['preciorebaja'];
   $precioventa = $_POST['precioventa'];
@@ -40,6 +41,7 @@
           $detalle."||".
           $cantidad."||".
           $preciofactura."||".
+          $precioempresa."||".
           $preciotraspaso."||".
           $preciorebaja."||".
           $precioventa;

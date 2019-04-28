@@ -8,7 +8,8 @@
          $c = new conectar();
          $conexion = $c->conexion();
 
-         $fecha = date('Y-m-d H:i:s');
+         $fechaLocal = time() - (7*60*60);
+         $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
 
          $sqlPersona = "SELECT usuario_persona
                           from usuario
@@ -23,7 +24,7 @@
                              grupo_persona)
                      values ('$datos[0]',
                              '$datos[1]',
-                             '$fecha',
+                             '$fechaAhora',
                              '$resultadoPersona')";
          return mysqli_query($conexion, $sql);
       }
@@ -32,7 +33,8 @@
 			$c = new conectar();
 			$conexion = $c->conexion();
 
-         $fecha = date('Y-m-d H:i:s');
+         $fechaLocal = time() - (7*60*60);
+         $fechaAhora = date("Y-m-d H:i:s", $fechaLocal);
 
          $sqlPersona = "SELECT usuario_persona
                           from usuario
@@ -42,7 +44,7 @@
 
 			$sql = "UPDATE grupo
                     set grupo_nombre = '$datos[1]',
-                        grupo_fecha = '$fecha',
+                        grupo_fecha = '$fechaAhora',
                         grupo_persona = '$resultadoPersona'
 						where grupo_id = '$datos[0]'";
 			echo mysqli_query($conexion,$sql);

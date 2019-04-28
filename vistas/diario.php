@@ -14,20 +14,31 @@
    </head>
    <body>
       <div class="container-fluid">
-         <div class="row">
+         <div class="row" style="text-align: center">
             <div class="col-sm-6">
                <h2>Movimientos del Día</h2>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
 
             </div>
-            <div class="col-sm-12">
-              <div id="cargaTablaDiario"></div>
-              <p style="text-align: right">
-              <span class="btn btn-info" name="imprimeDiario" id="imprimeDiario">
+            <div class="col-sm-3">
+               <br>
+               <span class="btn btn-success" name="imprimeDiario" id="imprimeDiario">
                  Imprimir Diario
               </span>
-              </p>
+            </div>
+         </div>
+         <div class="row" style="text-align: center">
+            <div class="col-sm-12">
+              <div id="cargaTablaDiario"></div>
+            </div>
+            <div class="col-sm-9">
+
+            </div>
+            <div class="col-sm-3">
+               <span class="btn btn-danger" name="cerrarDiario" id="cerrarDiario">
+                  Cerrar Diario
+               </span>
             </div>
          </div>
          <div hidden>
@@ -45,6 +56,22 @@
       $('#imprimeDiario').click(function(){
          $('.formatoDiario').printThis();
       });
+
+      $('#cerrarDiario').click(function(){
+         $.ajax({
+            url:"../procesos/cajas/cierraDiario.php",
+            success:function(r){
+               if(r==1){
+                  $('#cargaTablaDiario').load("tablas/tablaDiario.php");
+                  $('#impFormatoDiario').load("imprimir/impDiario.php");
+                  alertify.success("Diario cerrado con exito.");
+               }else{
+                  alertify.error("No se pudo cerrar diario.");
+               }
+            }
+         });
+      });
+
    });
 </script>
 

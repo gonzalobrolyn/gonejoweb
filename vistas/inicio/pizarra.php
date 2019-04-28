@@ -43,11 +43,11 @@
       <p><?php echo $ver[4]; ?></p>
       <p><?php echo $ver[5]; ?></p>
       <p><?php echo "Cantidad: ".$ver[6]; ?></p>
-      <p><?php echo "Precio: S/ ".ceil($ver[9]).".00"; ?></p>
+      <p><b><?php echo "Precio: S/ ".ceil($ver[9]).".00"; ?></b></p>
       <form id="frmAgreALista" style="text-align: center" class="form-inline">
          <input type="text" hidden name="idAlmacen" id="idAlmacen" value="<?php echo $idAlma; ?>">
-         <input type="text" name="cantidad" id="cantidad" placeholder="Cantidad" title="Cantidad" class="form-control input-sm">
-         <input type="text" name="precio" id="precio" placeholder="Precio S/ ....00" title="Precio" class="form-control input-sm"><p></p>
+         <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad" title="Cantidad" class="form-control input-sm">
+         <input type="number" name="precio" id="precio" placeholder="Precio S/ ....00" title="Precio" class="form-control input-sm"><p></p>
          <span class="btn btn-primary btn-sm" id="btnAgreALista">Agregar a lista</span><p></p>
       </form>
    </div>

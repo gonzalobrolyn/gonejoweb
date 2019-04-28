@@ -22,7 +22,9 @@
               on mov.movimiento_persona = per.persona_id
       inner join persona as usu
               on mov.movimiento_persona_usu = usu.persona_id
-           where mov.movimiento_caja = '$idCaja'";
+           where mov.movimiento_caja = '$idCaja'
+             and mov.movimiento_estado = '1'
+        order by mov.movimiento_id desc";
   $result = mysqli_query($conexion, $sql);
 ?>
 
