@@ -70,28 +70,16 @@
          $consultaP = mysqli_query($conexion, $sqlPersona);
          $idPersona = mysqli_fetch_row($consultaP)[0];
 
-         $sqlEfectivo = "SELECT caja_efectivo
-                           from caja
-                          where caja_id = '$idCaja'";
-         $consultaE = mysqli_query($conexion, $sqlEfectivo);
-         $efectivoCaja = mysqli_fetch_row($consultaE)[0];
-
-         $nuevoEfe = $efectivoCaja + $movi[2];
-
          $sqlMov = "INSERT into movimiento (
                                 movimiento_nombre,
                                 movimiento_persona,
                                 movimiento_efectivo,
-                                movimiento_monto,
-                                movimiento_nuevoefe,
                                 movimiento_fecha,
                                 movimiento_persona_usu,
                                 movimiento_caja)
                         values ('$movi[0]',
                                 '$movi[1]',
-                                '$efectivoCaja',
                                 '$movi[2]',
-                                '$nuevoEfe',
                                 '$fechaAhora',
                                 '$idPersona',
                                 '$idCaja')";
@@ -140,11 +128,6 @@
             $resAlmacen = mysqli_query($conexion, $sqlActualiza);
             $r = $r + $resSale + $resAlmacen;
          }
-         $sqlCaja = "UPDATE caja
-                        set caja_efectivo = '$nuevoEfe'
-                      where caja_id = '$idCaja'";
-         $resCaja = mysqli_query($conexion, $sqlCaja);
-         $r = $r + $resCaja;
          return $r;
       }
    }

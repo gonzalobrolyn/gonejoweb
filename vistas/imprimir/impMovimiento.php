@@ -10,7 +10,7 @@
    $importe = 0;
 
    $sqlMovi = "SELECT mov.movimiento_id,
-                      mov.movimiento_monto,
+                      mov.movimiento_efectivo,
                       mov.movimiento_fecha,
                       per.persona_nombre,
                       per.persona_apellido,
@@ -46,7 +46,7 @@
 <div class="container">
    <h2 style="text-align: center">NEXTGO</h2>
    <h4 style="text-align: center">
-      <?php echo 'Nombre: '.$ver[3]; ?> <br>
+      <?php echo 'Nombre: '.$ver[3]." ".$ver[4]." ".$ver[5]; ?> <br>
       <?php echo 'Documento: '.$ver[6]; ?> <br>
       <?php echo 'Fecha: '.$ver[2]; ?> <br>
    </h4>

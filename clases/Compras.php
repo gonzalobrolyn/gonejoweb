@@ -82,20 +82,18 @@
 
          $nuevoEfe = $efectivoCaja - $movi[2];
 
-         $sqlMov = "INSERT into movimiento (
-                                movimiento_nombre,
-                                movimiento_estado,
-                                movimiento_persona,
-                                movimiento_efectivo,
-                                movimiento_monto,
-                                movimiento_nuevoefe,
-                                movimiento_comprobante,
-                                movimiento_numerocom,
-                                movimiento_fecha,
-                                movimiento_persona_usu,
-                                movimiento_caja)
+         $sqlMov = "INSERT into movimi (
+                                movimi_nombre,
+                                movimi_persona,
+                                movimi_efectivo,
+                                movimi_monto,
+                                movimi_nuevoefe,
+                                movimi_comprobante,
+                                movimi_numerocom,
+                                movimi_fecha,
+                                movimi_persona_usu,
+                                movimi_caja)
                         values ('$movi[0]',
-                                '1',
                                 '$movi[1]',
                                 '$efectivoCaja',
                                 '$movi[2]',
@@ -129,7 +127,7 @@
                                     entrada_precio,
                                     entrada_preciocompra,
                                     entrada_fecha,
-                                    entrada_movimiento,
+                                    entrada_movimi,
                                     entrada_persona)
                             values ('$li[0]',
                                     '$dAlma[1]',

@@ -5,7 +5,13 @@
 
 	$obj = new cajas();
 
+   $idPersona = $_SESSION['usuarioID'];
    $idCaja = $_SESSION['cajaID'];
 
-	echo $obj->cierraCajaDiario($idCaja);
+   $datos = array(
+      'Cuenta',
+      $idPersona,
+      $idCaja);
+
+	echo $obj->cierraCajaDiario($datos);
  ?>

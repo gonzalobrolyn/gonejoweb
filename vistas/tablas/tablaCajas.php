@@ -55,13 +55,13 @@ while($ver=mysqli_fetch_row($result)):
       <tr><td><?php echo "Dolares: $ "; ?></td></tr>
       <tr>
          <td colspan="2">
-            <span class="btn btn-success">
+            <span class="btn btn-success" data-toggle="modal" data-target="#modalIngreso">
                <span class="glyphicon glyphicon-plus-sign"></span> Agregar Efectivo
             </span>
-            <span class="btn btn-primary">
+            <span class="btn btn-danger" data-toggle="modal" data-target="#modalEgreso">
                <span class="glyphicon glyphicon-minus-sign"></span> Retirar Efectivo
             </span>
-            <span class="btn btn-danger">
+            <span class="btn btn-primary">
                <span class="glyphicon glyphicon-pencil"></span> Editar Datos
             </span>
          </td>

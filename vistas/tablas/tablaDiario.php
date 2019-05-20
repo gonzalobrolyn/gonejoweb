@@ -7,18 +7,15 @@
   $idCaja = $_SESSION['cajaID'];
   $suma = 0;
 
-  $sql = "SELECT mov.movimiento_nombre,
-                 mov.movimiento_monto,
+  $sql = "SELECT mov.movimiento_id,
+                 mov.movimiento_nombre,
+                 mov.movimiento_efectivo,
                  mov.movimiento_detalle,
                  mov.movimiento_fecha,
                  per.persona_nombre,
                  per.persona_apellido,
                  per.persona_razon,
-                 usu.persona_nombre,
-                 usu.persona_apellido,
-                 mov.movimiento_efectivo,
-                 mov.movimiento_nuevoefe,
-                 mov.movimiento_id
+                 usu.persona_nombre
             from movimiento as mov
       inner join persona as per
               on mov.movimiento_persona = per.persona_id
@@ -32,103 +29,72 @@
 
 <table class="table table-hover table-condensed table-bordered" style="text-align: center">
    <tr>
-      <td><b>Hora</b></td>
-      <td><b>Movimiento</b></td>
-      <td><b>A Nombre</b></td>
-      <td><b>Monto</b></td>
-      <td><b>Efectivo</b></td>
       <td><b>Usuario</b></td>
+      <td><b>Hora</b></td>
+      <td><b>A Nombre</b></td>
+      <td colspan="2"><b>Movimiento</b></td>
+      <td><b>Efectivo</b></td>
+      <td><b>Suma</b></td>
       <td><b>Imprimir</b></td>
    </tr>
    <?php while($ver=mysqli_fetch_row($result)):
-      if ($ver[9] < $ver[10]) {
-         $suma = $suma + $ver[1];
+      if ($ver[1] == "Gasto") {
+         $suma = $suma - $ver[2];
       } else {
-         $suma = $suma - $ver[1];
+         $suma = $suma + $ver[2];
       }
    ?>
       <tr>
-         <td><?php echo $ver[3]; ?></td>
-         <td><?php echo $ver[0]; ?></td>
-         <td><?php echo $ver[4]." ".$ver[5]." ".$ver[6]; ?></td>
-         <td><?php echo $ver[1]; ?></td>
+         <td><?php echo $ver[8]; ?></td>
+         <td><?php echo $ver[4]; ?></td>
+         <td><?php echo $ver[5]." ".$ver[6]." ".$ver[7]; ?></td>
+         <td colspan="2"><?php echo $ver[1]; ?></td>
+         <td><?php echo $ver[2]; ?></td>
          <td><?php echo $suma.".00"; ?></td>
-         <td><?php echo $ver[7]." ".$ver[8]; ?></td>
          <td>
-            <span class="btn btn-info" data-toggle="modal" data-target="#modalMovimiento<?php echo $ver[11] ?>">
-               <span class="glyphicon glyphicon-eye-open"></span>
-            </span>
-            <div class="modal fade" id="modalMovimiento<?php echo $ver[11] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
-                      <?php echo $ver[3]." - ".$ver[0];?>
-                    </h4>
-                  </div>
-                  <div class="modal-body">
-                     <?php
-                     $importe = 0;
-                     $sqlDetalle = "SELECT sal.salida_id,
-                                           gru.grupo_nombre,
-                                           mar.marca_nombre,
-                                           pro.producto_modelo,
-                                           pro.producto_descripcion,                           sal.salida_salecan,
-                                           sal.salida_precioventa
-                                      from salida as sal
-                                inner join producto as pro
-                                        on sal.salida_producto = pro.producto_id
-                                inner join grupo as gru
-                                        on pro.producto_grupo = gru.grupo_id
-                                inner join marca as mar
-                                        on pro.producto_marca = mar.marca_id
-                                     where sal.salida_movimiento = '$ver[11]'";
-                     $queryDetalle = mysqli_query($conexion, $sqlDetalle);
-                     ?>
-                     <p><?php echo "A NOMBRE: ".$ver[4]." ".$ver[5]." ".$ver[6]; ?></p>
-                     <table class="table table-hover table-bordered">
-                        <tr>
-                           <td><b>Producto</b></td>
-                           <td><b>Cantidad</b></td>
-                           <td><b>P Unidad</b></td>
-                           <td><b>Importe</b></td>
-                        </tr>
-                        <?php
-                           while ($verDetalle = mysqli_fetch_row($queryDetalle)):
-                        ?>
-                        <tr>
-                           <td><?php echo $verDetalle[1]." ".$verDetalle[2]." ".$verDetalle[3]." ".$verDetalle[4]; ?></td>
-                           <td><?php echo $verDetalle[5]; ?></td>
-                           <td><?php echo $verDetalle[6]; ?></td>
-                           <td><?php echo $verDetalle[5]*$verDetalle[6]; ?></td>
-                        </tr>
-                        <?php
-                           $importe = $importe+$verDetalle[5]*$verDetalle[6];
-                           endwhile;
-                        ?>
-                        <tr>
-                           <td colspan="3" style="text-align: right"><b> TOTAL  S/ </b></td>
-                           <td><b><?php echo $importe; ?></b></td>
-                        </tr>
-                     </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <span class="btn btn-success" name="impMovi<?php echo $ver[11]; ?>" id="impMovi<?php echo $ver[11]; ?>">
+            <span class="btn btn-success" name="impMovi<?php echo $ver[0]; ?>" id="impMovi<?php echo $ver[0]; ?>">
                <span class="glyphicon glyphicon-print"></span>
             </span>
          </td>
       </tr>
+
+      <?php
+      $sqlDetalle = "SELECT sal.salida_id,
+                            gru.grupo_nombre,
+                            mar.marca_nombre,
+                            pro.producto_modelo,
+                            pro.producto_descripcion,                           sal.salida_salecan,
+                            sal.salida_precioventa
+                       from salida as sal
+                 inner join producto as pro
+                         on sal.salida_producto = pro.producto_id
+                 inner join grupo as gru
+                         on pro.producto_grupo = gru.grupo_id
+                 inner join marca as mar
+                         on pro.producto_marca = mar.marca_id
+                      where sal.salida_movimiento = '$ver[0]'";
+      $queryDetalle = mysqli_query($conexion, $sqlDetalle);
+
+      while ($verDetalle = mysqli_fetch_row($queryDetalle)):
+      ?>
+      <tr>
+         <td colspan="3"><?php echo $verDetalle[1]." ".$verDetalle[2]." ".$verDetalle[3]." ".$verDetalle[4]; ?></td>
+         <td><?php echo $verDetalle[5]; ?></td>
+         <td><?php echo $verDetalle[6]; ?></td>
+         <td><?php echo $verDetalle[5]*$verDetalle[6]; ?></td>
+      </tr>
+      <?php
+         endwhile;
+      ?>
+
       <div hidden>
-         <div class="formatoMovimiento<?php echo $ver[11]; ?>" id="impFormatoMovimiento<?php echo $ver[11]; ?>"></div>
+         <div class="formatoMovimiento<?php echo $ver[0]; ?>" id="impFormatoMovimiento<?php echo $ver[0]; ?>"></div>
       </div>
       <script type="text/javascript">
          $(document).ready(function(){
-            $('#impFormatoMovimiento<?php echo $ver[11]; ?>').load("imprimir/impMovimiento.php?idMovimiento=<?php echo $ver[11]; ?>");
-            $('#impMovi<?php echo $ver[11]; ?>').click(function(){
-               $('.formatoMovimiento<?php echo $ver[11]; ?>').printThis();
+            $('#impFormatoMovimiento<?php echo $ver[0]; ?>').load("imprimir/impMovimiento.php?idMovimiento=<?php echo $ver[0]; ?>");
+            $('#impMovi<?php echo $ver[0]; ?>').click(function(){
+               $('.formatoMovimiento<?php echo $ver[0]; ?>').printThis();
             });
          });
       </script>
@@ -137,7 +103,7 @@
       endwhile;
    ?>
    <tr>
-      <td colspan="3" style="text-align: right"><b>TOTAL EFECTIVO S/</b></td>
-      <td colspan="2"><b><?php echo $suma.".00"; ?></b></td>
+      <td colspan="6" style="text-align: right"><b>TOTAL EFECTIVO S/</b></td>
+      <td><b><?php echo $suma.".00"; ?></b></td>
    </tr>
 </table>

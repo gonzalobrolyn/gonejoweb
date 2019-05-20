@@ -38,8 +38,56 @@
         </div>
       </div>
     </div>
-
-  </body>
+      <div class="modal fade" id="modalIngreso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title" id="myModalLabel">Ingreso de Capital</h4>
+            </div>
+            <div class="modal-body">
+               <form id="frmIngreso">
+                  <label for="ingresoCap">Monto a ingresar:</label>
+                  <input type="number" name="ingresoCap" id="ingresoCap" class="form-control"> <p></p>
+                  <label for="">Concepto del ingreso:</label>
+                  <input type="text" name="conceptoIn" id="conceptoIn" class="form-control">
+                  <p></p>
+                  <p style="text-align: right">
+                     <span name="btnIngresoCap" id="btnIngresoCap" class="btn btn-success">
+                     Ingresar
+                     </span>
+                  </p>
+               </form>
+            </div>
+         </div>
+      </div>
+      </div>
+      <div class="modal fade" id="modalEgreso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title" id="myModalLabel">Retiro de Capital</h4>
+            </div>
+            <div class="modal-body">
+               <form id="frmEgreso">
+                  <label for="egresoCap">Monto a Retirar:</label>
+                  <input type="text" name="egresoCap" id="egresoCap" class="form-control">
+                  <p></p>
+                  <label for="">Concepto del retiro:</label>
+                  <input type="text" name="conceptoEg" id="conceptoEg" class="form-control">
+                  <p></p>
+                  <p style="text-align: right">
+                     <span name="btnEgresoCap" id="btnEgresoCap" class="btn btn-danger">
+                     Retirar
+                     </span>
+                  </p>
+               </form>
+            </div>
+         </div>
+      </div>
+      </div>
+   </body>
 </html>
 
 <script type="text/javascript">
@@ -71,6 +119,55 @@
         }
       });
     });
+
+    $('#btnIngresoCap').click(function(){
+      vacios = validarFrmVacio('frmIngreso');
+      if(vacios > 0){
+         alertify.alert("Debes llenar un monto.");
+         return false;
+      }
+      datos = $('#frmIngreso').serialize();
+      $.ajax({
+         type:"POST",
+         data:datos,
+         url:"../procesos/cajas/ingresoCapital.php",
+         success:function(r){
+            if(r==1){
+               $('#frmIngreso')[0].reset();
+               $('#modalIngreso').modal("hide");
+               $('#cargaTablaCajas').load("tablas/tablaCajas.php");
+               alertify.success("Agregado con exito.");
+            }else{
+               alertify.error("Fallo al agregar.");
+            }
+         }
+      });
+   });
+
+   $('#btnEgresoCap').click(function(){
+     vacios = validarFrmVacio('frmEgreso');
+     if(vacios > 0){
+        alertify.alert("Debes llenar un monto.");
+        return false;
+     }
+     datos = $('#frmEgreso').serialize();
+     $.ajax({
+        type:"POST",
+        data:datos,
+        url:"../procesos/cajas/egresoCapital.php",
+        success:function(r){
+           if(r==1){
+             $('#frmEgreso')[0].reset();
+             $('#modalEgreso').modal("hide");
+             $('#cargaTablaCajas').load("tablas/tablaCajas.php");
+             alertify.success("Retirado con exito.");
+           }else{
+             alertify.error("Fallo al retirar.");
+           }
+        }
+     });
+   });
+
   });
 </script>
 
