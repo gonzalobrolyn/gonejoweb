@@ -71,8 +71,10 @@
             <textarea rows="5" readonly name="detalleC" id="detalleC" placeholder="Caracteristicas" title="Caracteristicas" class="form-control"></textarea><p></p>
             <input type="text" name="cantidad" id="cantidad" title="Cantidad" placeholder="Cantidad" class="form-control"><p></p>
             <input type="text" name="preciofactura" id="preciofactura" title="Precio de Factura" placeholder="Precio de Factura S/" class="form-control"><p></p>
+            <input type="text" name="preciollegada" id="preciollegada" title="Precio de Llegada" placeholder="Precio de Llegada S/" class="form-control"><p></p>
             <input type="text" name="precioempresa" id="precioempresa" title="Precio a Empresas" placeholder="Precio a Empresas S/" class="form-control"><p></p>
             <input type="text" name="preciotraspaso" id="preciotraspaso" title="Precio de Traspaso" placeholder="Precio de Traspaso S/" class="form-control"><p></p>
+            <input type="text" name="preciocantidad" id="preciocantidad" title="Precio por Cantidad" placeholder="Precio por Cantidad S/" class="form-control"><p></p>
             <input type="text" name="preciorebaja" id="preciorebaja" title="Precio con Rebaja" placeholder="Precio con Rebaja S/" class="form-control"><p></p>
             <input type="text" name="precioventa" id="precioventa" title="Precio de Venta" placeholder="Precio de Venta S/" class="form-control"><p></p>
             <input class="btn btn-default" type="reset" name="Limpiar" value="Limpiar">

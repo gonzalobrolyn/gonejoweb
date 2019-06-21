@@ -10,8 +10,10 @@
     <td><b>Caracteristicas</b></td>
     <td><b>Cantidad</b></td>
     <td><b>P. Factura</b></td>
+    <td><b>P. Llegada</b></td>
     <td><b>P. Empresa</b></td>
     <td><b>P. Traspaso</b></td>
+    <td><b>P. Cantidad</b></td>
     <td><b>P. Rebaja</b></td>
     <td><b>P. Venta</b></td>
     <td><b>Importe</b></td>
@@ -36,6 +38,8 @@
         <td><?php echo $d[11]; ?></td>
         <td><?php echo $d[12]; ?></td>
         <td><?php echo $d[13]; ?></td>
+        <td><?php echo $d[14]; ?></td>
+        <td><?php echo $d[15]; ?></td>
         <td><?php echo $d[8]*$d[9]; ?></td>
         <td>
           <span class="btn btn-danger btn-xs" onclick="quitarProducto('<?php echo $i; ?>')">
@@ -50,7 +54,7 @@
   endif;
   ?>
   <tr>
-    <td colspan="11" style="text-align: right"><b>TOTAL S/ </b></td>
+    <td colspan="13" style="text-align: right"><b>TOTAL S/ </b></td>
     <td colspan="2"><b><?php echo $total; ?></b></td>
   </tr>
 </table>

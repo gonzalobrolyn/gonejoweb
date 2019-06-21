@@ -145,8 +145,10 @@
                                            almacen_producto,
                                            almacen_cantidad,
                                            almacen_preciofactura,
+                                           almacen_preciollegada,
                                            almacen_precioempresa,
                                            almacen_preciotraspaso,
+                                           almacen_preciocantidad,
                                            almacen_preciorebaja,
                                            almacen_precioventa,
                                            almacen_caja)
@@ -157,6 +159,8 @@
                                            '$li[11]',
                                            '$li[12]',
                                            '$li[13]',
+                                           '$li[14]',
+                                           '$li[15]',
                                            '$idCaja')";
                $resAlmacen = mysqli_query($conexion, $sqlAlmacena);
             } else {
@@ -166,10 +170,12 @@
                $sqlActualiza = "UPDATE almacen
                                    set almacen_cantidad = '$v3',
                                        almacen_preciofactura = ('$v1'+'$v2')/'$v3',
-                                       almacen_precioempresa = '$li[10]',
-                                       almacen_preciotraspaso = '$li[11]',
-                                       almacen_preciorebaja = '$li[12]',
-                                       almacen_precioventa = '$li[13]'
+                                       almacen_preciollegada = '$li[10]',
+                                       almacen_precioempresa = '$li[11]',
+                                       almacen_preciotraspaso = '$li[12]',
+                                       almacen_preciocantidad = '$li[13]',
+                                       almacen_preciorebaja = '$li[14]',
+                                       almacen_precioventa = '$li[15]'
                                  where almacen_id = '$dAlma[0]'
                                    and almacen_producto = '$li[0]'
                                    and almacen_caja = '$idCaja'";

@@ -72,12 +72,14 @@
 
          $sqlMov = "INSERT into movimiento (
                                 movimiento_nombre,
+                                movimiento_estado,
                                 movimiento_persona,
                                 movimiento_efectivo,
                                 movimiento_fecha,
                                 movimiento_persona_usu,
                                 movimiento_caja)
                         values ('$movi[0]',
+                                '0',
                                 '$movi[1]',
                                 '$movi[2]',
                                 '$fechaAhora',

@@ -15,8 +15,10 @@
                      pro.producto_descripcion,
                      alm.almacen_cantidad,
                      alm.almacen_preciofactura,
+                     alm.almacen_preciollegada,
                      alm.almacen_precioempresa,
                      alm.almacen_preciotraspaso,
+                     alm.almacen_preciocantidad,
                      alm.almacen_preciorebaja,
                      alm.almacen_precioventa
                 from almacen as alm
@@ -39,8 +41,10 @@
          <td><b>DESCRIPCION</b></td>
          <td><b>CANTIDAD</b></td>
          <td><b>P FACTURA</b></td>
+         <td><b>P LLEGADA</b></td>
          <td><b>P EMPRESA</b></td>
          <td><b>P TRASPASO</b></td>
+         <td><b>P CANTIDAD</b></td>
          <td><b>P REBAJA</b></td>
          <td><b>P VENTA</b></td>
       </tr>
@@ -57,6 +61,8 @@
          <td><?php echo $ver[9]; ?></td>
          <td><?php echo $ver[10]; ?></td>
          <td><?php echo $ver[11]; ?></td>
+         <td><?php echo $ver[12]; ?></td>
+         <td><?php echo $ver[13]; ?></td>
       </tr>
       <?php endwhile; ?>
    </table>
