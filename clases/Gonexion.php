@@ -2,8 +2,8 @@
 <?php
 	class conectar{
 		private $servidor="localhost";
-		private $usuario="root";
-		private $password="";
+		private $usuario="super";
+		private $password="gonza";
 		private $bd="gunidad";
 
 		public function conexion(){
