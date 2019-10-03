@@ -8,10 +8,10 @@
 	if(count($_SESSION['listaCompraTmp'])==0){
 		echo 0;
 	}else{
-      $listaCompra = $_SESSION['listaCompraTmp'];
+    $listaCompra = $_SESSION['listaCompraTmp'];
 		$comprobante = $_POST['comprobante'];
 		$numero = $_POST['numero'];
-      $total = 0;
+    $total = 0;
 
       foreach (@$listaCompra as $key) {
          $d = explode("||", @$key);
@@ -34,7 +34,7 @@
 			$numero
 		);
 
-		$result = $obj->crearCompra($datos) ;
+		$result = $obj->crearCompra($datos);
 		unset($_SESSION['listaCompraTmp']);
 		echo $result;
 	}
