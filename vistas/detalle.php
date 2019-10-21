@@ -16,7 +16,9 @@
                      pro.producto_descripcion,
                      pro.producto_detalle,
                      alm.almacen_cantidad,
+                     alm.almacen_precioempresa,
                      alm.almacen_preciotraspaso,
+                     alm.almacen_preciocantidad,
                      alm.almacen_preciorebaja,
                      alm.almacen_precioventa,
                      alm.almacen_producto
@@ -46,7 +48,7 @@
       <div class="container-fluid">
          <div class="row">
             <div class="col-sm-8" style="text-align: center">
-               <p><?php echo 'T'.ceil($ver[7]).'R'.ceil($ver[8]).'GN'; ?></p>
+               <p><?php echo 'E'.ceil($ver[7]).'T'.ceil($ver[8]).'C'.ceil($ver[9]).'R'.ceil($ver[10]).'V'.ceil($ver[11]); ?></p>
                <h4><?php echo $ver[1]." - ".$ver[2]." ".$ver[3]; ?></h4>
                <p><?php echo $ver[4]; ?></p>
                <p><?php echo $ver[5]; ?></p>
@@ -79,7 +81,7 @@
               </div>
               <div class="modal-body">
                   <form id="frmNuevaEspecifi">
-                     <input type="text" hidden name="producto" id="producto" value="<?php echo $ver[10]; ?>">
+                     <input type="text" hidden name="producto" id="producto" value="<?php echo $ver[12]; ?>">
                      <input type="text" name="atributo" id="atributo" placeholder="Atributo" title="Atributo" class="form-control input-sm"><p></p>
                      <input type="text" name="especificacion" id="especificacion" placeholder="Especificación" title="Especificación" class="form-control input-sm"><p></p>
                      <input type="reset" name="Limpiar" value="Limpiar" class="btn btn-default btn-sm">
@@ -111,7 +113,7 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
-      $('#cargaTablaEspecifi').load("tablas/tablaEspecifi.php?idProd=<?php echo $ver[10]; ?>");
+      $('#cargaTablaEspecifi').load("tablas/tablaEspecifi.php?idProd=<?php echo $ver[12]; ?>");
 
       $('#btnAgreALista').click(function(){
         vacios = validarFrmVacio('frmAgreALista');
@@ -144,7 +146,7 @@
           url: "../procesos/detalle/nuevaEspecifi.php",
           success: function(r){
            $('#frmNuevaEspecifi')[0].reset();
-           $('#cargaTablaEspecifi').load("tablas/tablaEspecifi.php?idProd=<?php echo $ver[10]; ?>");
+           $('#cargaTablaEspecifi').load("tablas/tablaEspecifi.php?idProd=<?php echo $ver[12]; ?>");
           }
         });
       });
