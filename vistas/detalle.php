@@ -54,7 +54,7 @@
                <p><?php echo $ver[5]; ?></p>
             </div>
             <div class="col-sm-4" style="text-align: center">
-               <button type="button" class="btn btn-info">Volver</button>
+               <a href="inicio.php" class="btn btn-info">Volver a Ventas</a>
                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#agregarEspecifi">Agregar dato</button>
                <button type="button" class="btn btn-info" id="btnImprimirProducto" name="btnImprimirProducto">Imprimir</button>
                <p></p>
@@ -65,9 +65,9 @@
                   <?php echo "Precio: S/ ".ceil($ver[9]).".00"; ?>
                </div>
                <form id="frmAgreALista" style="text-align: center" class="form-inline">
-                  <input type="text" hidden name="idAlmacen" id="idAlmacen" value="<?php echo $idAlma; ?>">
-                  <input type="text" name="cantidad" id="cantidad" placeholder="Cantidad" title="Cantidad" class="form-control input-sm">
-                  <input type="text" name="precio" id="precio" placeholder="Precio S/ ....00" title="Precio" class="form-control input-sm"><p></p>
+                  <input type="text" hidden name="idAlmacen" id="idAlmacen" value="<?php echo $idProAlm; ?>">
+                  <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad" title="Cantidad" class="form-control input-sm">
+                  <input type="number" name="precio" id="precio" placeholder="Precio S/ ....00" title="Precio" class="form-control input-sm"><p></p>
                   <span class="btn btn-primary" id="btnAgreALista">Agregar a lista</span><p></p>
                </form>
             </div>
@@ -128,7 +128,8 @@
           url: "../procesos/ventas/agreProLisTmp.php",
           success: function(r){
            $('#frmAgreALista')[0].reset();
-           $('#cargaTablaVentas').load("tablas/tablaVentasTmp.php");
+           window.location="inicio.php";
+           //$('#cargaTablaVentas').load("tablas/tablaVentasTmp.php");
           }
         });
       });

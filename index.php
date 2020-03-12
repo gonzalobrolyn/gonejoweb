@@ -3,7 +3,7 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Gonejo Web</title>
+    <title>GonejoWeb</title>
     <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
     <link rel="icon" type="image/png" href="imagenes/mifavicon.png" />
   	<script src="librerias/jquery-3.2.1.min.js"></script>
@@ -28,7 +28,7 @@
           </button>
           <a class="navbar-brand" href="#">
              <span class="btn btn-primary btn-lg">
-               <span class="glyphicon glyphicon-fire" style="color: #22d0ff"></span> gonzalobrolyn</span>
+               <span class="glyphicon glyphicon-fire" style="color: #22d0ff"></span> GonejoWeb</span>
           </a>
          </div>
          <div id="main-nav" class="collapse navbar-collapse">

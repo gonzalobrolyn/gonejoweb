@@ -6,6 +6,8 @@
   $conexion = $c->conexion();
   $idCaja = $_SESSION['cajaID'];
   $suma = 0;
+  $inversion = 0;
+  $renta = 0;
 
   $sql = "SELECT mov.movimiento_id,
                  mov.movimiento_nombre,
@@ -31,14 +33,14 @@
    <tr>
       <td><b>Usuario</b></td>
       <td><b>Hora</b></td>
-      <td><b>A Nombre</b></td>
-      <td colspan="2"><b>Movimiento</b></td>
+      <td colspan="2"><b>A Nombre</b></td>
+      <td><b>Movimiento</b></td>
       <td><b>Efectivo</b></td>
       <td><b>Suma</b></td>
       <td><b>Imprimir</b></td>
    </tr>
    <?php while($ver=mysqli_fetch_row($result)):
-      if ($ver[1] == "Gasto") {
+      if ($ver[1] == "Egreso") {
          $suma = $suma - $ver[2];
       } else {
          $suma = $suma + $ver[2];
@@ -47,8 +49,8 @@
       <tr>
          <td><?php echo $ver[8]; ?></td>
          <td><?php echo $ver[4]; ?></td>
-         <td><?php echo $ver[5]." ".$ver[6]." ".$ver[7]; ?></td>
-         <td colspan="2"><?php echo $ver[1]; ?></td>
+         <td colspan="2"><?php echo $ver[5]." ".$ver[6]." ".$ver[7]; ?></td>
+         <td><?php echo $ver[1]; ?></td>
          <td><?php echo $ver[2]; ?></td>
          <td><?php echo $suma.".00"; ?></td>
          <td>
@@ -63,8 +65,10 @@
                             gru.grupo_nombre,
                             mar.marca_nombre,
                             pro.producto_modelo,
-                            pro.producto_descripcion,                           sal.salida_salecan,
-                            sal.salida_precioventa
+                            pro.producto_descripcion,
+                            sal.salida_salecan,
+                            sal.salida_precioventa,
+                            sal.salida_precio
                        from salida as sal
                  inner join producto as pro
                          on sal.salida_producto = pro.producto_id
@@ -78,12 +82,14 @@
       while ($verDetalle = mysqli_fetch_row($queryDetalle)):
       ?>
       <tr>
-         <td colspan="3"><?php echo $verDetalle[1]." ".$verDetalle[2]." ".$verDetalle[3]." ".$verDetalle[4]; ?></td>
+         <td colspan="2"><?php echo $verDetalle[1]." ".$verDetalle[2]." ".$verDetalle[3]." ".$verDetalle[4]; ?></td>
          <td><?php echo $verDetalle[5]; ?></td>
+         <td><?php echo $verDetalle[7]; ?></td>
          <td><?php echo $verDetalle[6]; ?></td>
-         <td><?php echo $verDetalle[5]*$verDetalle[6]; ?></td>
+         <td><?php echo $verDetalle[5]*$verDetalle[6].".00"; ?></td>
       </tr>
       <?php
+         $inversion = $inversion + $verDetalle[5] * $verDetalle[7];
          endwhile;
       ?>
 
@@ -103,7 +109,17 @@
       endwhile;
    ?>
    <tr>
-      <td colspan="6" style="text-align: right"><b>TOTAL EFECTIVO S/</b></td>
+      <td colspan="6" style="text-align: right"><b>TOTAL VENTA S/</b></td>
       <td><b><?php echo $suma.".00"; ?></b></td>
    </tr>
+   <tr>
+      <td colspan="6" style="text-align: right"><b>TOTAL INVERSION S/</b></td>
+      <td><b><?php echo $inversion; ?></b></td>
+   </tr>
+   <tr>
+      <td colspan="6" style="text-align: right"><b>TOTAL RENTA S/</b></td>
+      <td><b><?php echo $suma - $inversion; ?></b></td>
+   </tr>
+
+
 </table>
