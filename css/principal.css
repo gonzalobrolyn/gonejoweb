@@ -1,0 +1,119 @@
+/* carousel */
+.main {
+  background: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: calc(100vh - 225px);
+}
+.carousel-inner {
+  text-align: center;
+}
+.carousel-inner img {
+  width: 100%;
+  min-height: calc(100vh - 225px);
+  max-height: calc(100vh - 225px);
+  object-fit: cover;
+  -o-object-fit: cover;
+}
+.carousel .item > img{
+  display: inline-block;
+}
+#slider .item {
+  height: auto;
+}
+.main__title {
+  color: white;
+  font-size: 25px;
+}
+
+.contact {
+  background-color: #0199d5;
+  height: 75px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.contact__item {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.contact__item--logo {
+  background-color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+.contact__item--logo img {
+  height: 50px;
+  width: 50px;
+}
+.contact__item--dato {
+  color: white;
+  padding-top: 10px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.contact__item--dato p {
+  font-size: 18px;
+  line-height: .7em;
+}
+/* vista de items */
+.section-title {
+  color: #2a2a2a;
+  font-size: 25px;
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.section {
+  width: 100%;
+  padding: 15px 30px;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.section-item {
+  background-color: white;
+  overflow: hidden;
+  display: inline-block;
+  margin: 10px 15px;
+  border: 1px solid #bababa;
+  border-radius: 5px;
+  width: 280px;
+  height:  320px;
+  cursor: pointer;
+  position: relative;
+}
+.section-item__img {
+  width: 280px;
+  height: 200px;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.section-item__details {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 5px 10px;
+  position: relative;
+  line-height: .5em;
+}
+.section-item__details--title {
+  font-size: 20px;
+  line-height: 1em;
+}
+.section-item__details--subtitle {
+  margin-top: 5px;
+  font-size: 16px;
+}

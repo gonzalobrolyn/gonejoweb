@@ -46,7 +46,7 @@
 			<p>
 				Todos los derechos reservados
 				<span class="glyphicon glyphicon-copyright-mark"></span>
-				Gonzalo Brolyn -
+				Bermejo Devs. -
 				<?php echo date('Y'); ?>
 			</p>
 		</div>
