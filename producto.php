@@ -1,45 +1,42 @@
-<?php
+<?php 
   require_once "./clases/Gonexion.php";
-  $c = new conectar();
-  $conexion = $c->conexion();
- 
-  $sqlLaptop = "SELECT alm.almacen_cantidad,
-                       alm.almacen_precioventa,
-                       mar.marca_nombre,
-                       pro.producto_modelo,
-                       pro.producto_descripcion,
-                       img.imagen_ruta,
-                       alm.almacen_id
-                  from almacen as alm
-            inner join producto as pro
-                    on alm.almacen_producto = pro.producto_id
-            inner join imagen as img
-                    on pro.producto_imagen = img.imagen_id
-            inner join grupo as gru
-                    on pro.producto_grupo = gru.grupo_id
-            inner join marca as mar
-                    on pro.producto_marca = mar.marca_id
-                 where gru.grupo_familia = '1'";
-  $queryLaptop = mysqli_query($conexion, $sqlLaptop);
+      $c = new conectar();
+      $conexion = $c->conexion();
 
-  $sqlImpresora = "SELECT alm.almacen_cantidad,
-                          alm.almacen_precioventa,
-                          mar.marca_nombre,
-                          pro.producto_modelo,
-                          pro.producto_descripcion,
-                          img.imagen_ruta,
-                          alm.almacen_id
-                     from almacen as alm
-               inner join producto as pro
-                       on alm.almacen_producto = pro.producto_id
-               inner join imagen as img
-                       on pro.producto_imagen = img.imagen_id
-               inner join grupo as gru
-                       on pro.producto_grupo = gru.grupo_id
-               inner join marca as mar
-                       on pro.producto_marca = mar.marca_id
-                    where gru.grupo_familia = '8'";
-  $queryImpresora = mysqli_query($conexion, $sqlImpresora);
+      $idProAlm = $_GET['idProducto'];
+
+      $sql = "SELECT img.imagen_ruta,
+                     gru.grupo_nombre,
+                     mar.marca_nombre,
+                     pro.producto_modelo,
+                     pro.producto_descripcion,
+                     pro.producto_detalle,
+                     alm.almacen_cantidad,
+                     alm.almacen_precioempresa,
+                     alm.almacen_preciotraspaso,
+                     alm.almacen_preciocantidad,
+                     alm.almacen_preciorebaja,
+                     alm.almacen_precioventa,
+                     alm.almacen_producto
+                from almacen as alm
+          inner join producto as pro
+                  on alm.almacen_producto = pro.producto_id
+          inner join imagen as img
+                  on pro.producto_imagen = img.imagen_id
+          inner join grupo as gru
+                  on pro.producto_grupo = gru.grupo_id
+          inner join marca as mar
+                  on pro.producto_marca = mar.marca_id
+               where alm.almacen_id = '$idProAlm'";
+      $consulta = mysqli_query($conexion, $sql);
+      $ver = mysqli_fetch_row($consulta);
+
+      $sqlEsp = "SELECT especifi_id,
+                        especifi_nombre,
+                        especifi_detalle
+                   from especifi
+                  where especifi_producto = '$ver[12]'";
+      $consultaEsp = mysqli_query($conexion, $sqlEsp);
 ?>
 
 <!DOCTYPE html>
@@ -105,68 +102,45 @@
     </div> 
   </header>
 
-  <section class="main">
-    <div id="slider" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#slider" data-slide-to="0" class="active"></li>
-        <li data-target="#slider" data-slide-to="1"></li>
-        <li data-target="#slider" data-slide-to="2"></li>
-        <li data-target="#slider" data-slide-to="3"></li>
-        <li data-target="#slider" data-slide-to="4"></li>
-        <li data-target="#slider" data-slide-to="5"></li>
-      </ol>
-
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="imagenes/imp-epson-l3110.png" alt="Epson L3110">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/imp-epson-l3150.jpg" alt="Epson L3150">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/imp-epson-l5190.jpg" alt="Epson L5190">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/cam-logitech-c920.jpg" alt="Logitech C920">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/cam-logitech-c922.jpg" alt="Logitech C922">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/servicio-tecnico.jpg" alt="Servicio Tecnico">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
+  <section class="main" style="background: white">
+    <div class="row" style="text-align: center">
+      <div class="col-sm-12">
+        <h4><?php echo $ver[1]." - ".$ver[2]." ".$ver[3]; ?></h4>
+        <p><?php echo $ver[4]; ?></p>
       </div>
-
-      <!-- Controles -->
-      <a class="left carousel-control" href="#slider" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-      </a>
-      <a class="right carousel-control" href="#slider" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Siguiente</span>
-      </a>
     </div>
+    <div class="row" style="text-align: center">
+      <div class="col-sm-4">
+        <p>DESCRIPCION GENERAL:</p>
+        <p><?php echo $ver[5]; ?></p>
+      </div>
+      <div class="col-sm-4">
+        <?php
+          $img = explode("/",$ver[0]);
+          $ruta = "./".$img[2]."/".$img[3];
+        ?>
+        <img src="<?php echo $ruta; ?>" class="img-responsive" />
+      </div>
+      <div class="col-sm-4">
+        <P>ESPECIFICACIONES TECNICAS:</P>
+        <ul>
+        <?php 
+          while ($verEsp = mysqli_fetch_row($consultaEsp)):
+        ?>
+          <li style="list-style: none"><?php echo $verEsp[1].": ".$verEsp[2] ?></li>
+        <?php 
+          endwhile;
+        ?>
+        </ul>
+      </div>
+    </div>
+    <div class="row" style="text-align: center">
+      <div class="col-md-12">
+        <p><?php echo "Disponible: ".$ver[6]; ?></p>
+        <p><?php echo "Precio: S/ ".ceil($ver[11]).".00"; ?></p>
+      </div>
+    </div>
+    
   </section>
 
   <section class="contact">
@@ -208,78 +182,6 @@
     </div> -->
   </section>
     
-  <h2 class="section-title">Oferta de Laptops</h2>
-
-  <section class="section">
-
-    <?php
-      while($verLaptop = mysqli_fetch_row($queryLaptop)):
-        $imagenLaptop = explode("/", $verLaptop[5]);
-    ?>
-    
-    <div class="section-item">
-      <a href="./producto.php?idProducto=<?php echo $verLaptop[6]?>">
-        <img class="section-item__img" src="<?php echo "./".$imagenLaptop[2]."/".$imagenLaptop[3]?>" alt="">
-        <div class="section-item__details">
-          <p class="section-item__details--title">
-          <?php 
-            echo $verLaptop[2]." ".$verLaptop[3]." ".$verLaptop[4];
-          ?>
-          </p>
-          <p class="section-item__details--subtitle">
-          <?php 
-            echo "Cantidad: ".$verLaptop[0];
-          ?>
-          </p>
-          <p class="section-item__details--subtitle">
-          <?php 
-            echo "Precio: S/ ".$verLaptop[1];
-          ?>
-          </p>
-        </div>
-      </a>
-    </div>
-    <?php
-      endwhile
-    ?>
-  </section>
-
-  <h2 class="section-title">Oferta de Impresoras</h2>
-
-  <section class="section">
-
-    <?php
-      while($verImpresora = mysqli_fetch_row($queryImpresora)):
-        $imagenImpresora = explode("/", $verImpresora[5]);
-    ?>
-    
-    <div class="section-item">
-      <a href="./producto.php?idProducto=<?php echo $verImpresora[6]?>">
-        <img class="section-item__img" src="<?php echo "./".$imagenImpresora[2]."/".$imagenImpresora[3]?>" alt="">
-        <div class="section-item__details">
-          <p class="section-item__details--title">
-          <?php 
-            echo $verImpresora[2]." ".$verImpresora[3]." ".$verImpresora[4];
-          ?>
-          </p>
-          <p class="section-item__details--subtitle">
-          <?php 
-            echo "Cantidad: ".$verImpresora[0];
-          ?>
-          </p>
-          <p class="section-item__details--subtitle">
-          <?php 
-            echo "Precio: S/ ".$verImpresora[1];
-          ?>
-          </p>
-        </div>
-      </a>
-    </div>
-    <?php
-      endwhile
-    ?>
-  </section>
-
   <div class="modal fade" id="modalIngreso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-sm" role="document">
       <div class="panel panel-primary">
