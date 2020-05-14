@@ -19,7 +19,7 @@
                     on pro.producto_grupo = gru.grupo_id
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
-                 where gru.grupo_familia = '1'";
+                 where gru.grupo_familia = '29'";
   $queryLaptop = mysqli_query($conexion, $sqlLaptop);
 
   $sqlImpresora = "SELECT alm.almacen_cantidad,
@@ -38,7 +38,7 @@
                        on pro.producto_grupo = gru.grupo_id
                inner join marca as mar
                        on pro.producto_marca = mar.marca_id
-                    where gru.grupo_familia = '8'";
+                    where gru.grupo_familia = '18'";
   $queryImpresora = mysqli_query($conexion, $sqlImpresora);
 ?>
 
