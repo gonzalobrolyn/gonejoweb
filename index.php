@@ -19,7 +19,9 @@
                     on pro.producto_grupo = gru.grupo_id
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
-                 where gru.grupo_familia = '29'";
+                    where gru.grupo_familia = '1'
+                --  where gru.grupo_familia = '29'
+                ";
   $queryLaptop = mysqli_query($conexion, $sqlLaptop);
 
   $sqlImpresora = "SELECT alm.almacen_cantidad,
@@ -38,8 +40,31 @@
                        on pro.producto_grupo = gru.grupo_id
                inner join marca as mar
                        on pro.producto_marca = mar.marca_id
-                    where gru.grupo_familia = '18'";
+                    where gru.grupo_familia = '2'
+                    -- where gru.grupo_familia = '18'
+                    ";
   $queryImpresora = mysqli_query($conexion, $sqlImpresora);
+
+  $sqlCamara = "SELECT alm.almacen_cantidad,
+                       alm.almacen_precioventa,
+                       mar.marca_nombre,
+                       pro.producto_modelo,
+                       pro.producto_descripcion,
+                       img.imagen_ruta,
+                       alm.almacen_id
+                  from almacen as alm
+            inner join producto as pro
+                    on alm.almacen_producto = pro.producto_id
+            inner join imagen as img
+                    on pro.producto_imagen = img.imagen_id
+            inner join grupo as gru
+                    on pro.producto_grupo = gru.grupo_id
+            inner join marca as mar
+                    on pro.producto_marca = mar.marca_id
+                 where gru.grupo_familia = '8'
+                 -- where gru.grupo_familia = '14'
+                 ";
+  $queryCamara = mysqli_query($conexion, $sqlCamara);
 ?>
 
 <!DOCTYPE html>
@@ -89,20 +114,26 @@
       </ul>
     </div>
     <div class="header__menu">
-      <ul>
-        <li><a href="#">PRODUCTOS</a></li>
-        <li><a href="#">MARCAS</a></li>
-        <li><a href="#">OFERTAS</a></li>
-        <li><a href="#">NOVEDADES</a></li>
-        <li><a href="#">PROMOCIONES</a></li>
-        <li><a href="#">EXCLUSIVOS</a></li>
-        <li><a href="#">CATALOGOS</a></li>
-        <li><a href="#">NOTICIAS</a></li>
-        <li><a href="#">CONTACTENOS</a></li>
-        <li><a href="#">CARRITO</a></li>
-        <li><a href="#">SUCURSALES</a></li>
-      </ul>
+      <div class="header__menu--productos">
+        <p>PRODUCTOS</p>
+      </div>
+      <div class="header__menu--marcas">
+        <p>MARCAS</p>
+      </div>
+        <div><p>OFERTAS</p></div>
+        <div><p>NOVEDADES</p></div>
+        <div><p>PROMOCIONES</p></div>
+        <div><p>EXCLUSIVOS</p></div>
+        <div><p>CATALOGOS</p></div>
+        <div><p>NOTICIAS</p></div>
+        <div><p>CONTACTENOS</p></div>
+        <div><p>CARRITO</p></div>
+        <div><p>SUCURSALES</p></div>
     </div> 
+        <ul class="header__menu--productos-lista">
+          <li><a href="/">cuenta</a></li>
+          <li><a href="/">cuenta2</a></li>
+        </ul>
   </header>
 
   <section class="main">
@@ -270,6 +301,42 @@
           <p class="section-item__details--subtitle">
           <?php 
             echo "Precio: S/ ".$verImpresora[1];
+          ?>
+          </p>
+        </div>
+      </a>
+    </div>
+    <?php
+      endwhile
+    ?>
+  </section>
+
+  <h2 class="section-title">Oferta de Camaras Web</h2>
+
+  <section class="section">
+
+    <?php
+      while($verCamara = mysqli_fetch_row($queryCamara)):
+        $imagenCamara = explode("/", $verCamara[5]);
+    ?>
+    
+    <div class="section-item">
+      <a href="./producto.php?idProducto=<?php echo $verCamara[6]?>">
+        <img class="section-item__img" src="<?php echo "./".$imagenCamara[2]."/".$imagenCamara[3]?>" alt="">
+        <div class="section-item__details">
+          <p class="section-item__details--title">
+          <?php 
+            echo $verCamara[2]." ".$verCamara[3]." ".$verCamara[4];
+          ?>
+          </p>
+          <p class="section-item__details--subtitle">
+          <?php 
+            echo "Cantidad: ".$verCamara[0];
+          ?>
+          </p>
+          <p class="section-item__details--subtitle">
+          <?php 
+            echo "Precio: S/ ".$verCamara[1];
           ?>
           </p>
         </div>

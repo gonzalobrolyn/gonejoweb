@@ -77,6 +77,11 @@ body {
 .header__menu {
   grid-area: 4 / 1 / 5 / 5 ;
   background: #2a2a2a;
+  color: white;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0px 30px;
 }
 .header__menu ul {
   list-style: none;
@@ -88,13 +93,25 @@ body {
 .header__menu li {
   margin: 10px 0px;
 }
-.header__menu li a {
+.header__menu li p {
   color: white;
   font-size: 16px;
-  text-decoration: none;
+  cursor: pointer;
 }
-.header__menu li a:hover {
+.header__menu li p:hover {
   text-decoration: underline;
+}
+
+.header__menu--productos-lista {
+  display: none;
+  list-style: none;
+  padding: 0px;
+  position: absolute;
+  width: 80%;
+  text-align: right;
+}
+.header__menu--productos:hover .header__menu--productos-lista, .header__menu--productos-lista:hover {
+  display: block;
 }
 
 .footer {
