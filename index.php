@@ -19,8 +19,8 @@
                     on pro.producto_grupo = gru.grupo_id
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
-                    where gru.grupo_familia = '1'
-                --  where gru.grupo_familia = '29'
+                    -- where gru.grupo_familia = '1'
+                 where gru.grupo_familia = '29'
                 ";
   $queryLaptop = mysqli_query($conexion, $sqlLaptop);
 
@@ -40,8 +40,8 @@
                        on pro.producto_grupo = gru.grupo_id
                inner join marca as mar
                        on pro.producto_marca = mar.marca_id
-                    where gru.grupo_familia = '2'
-                    -- where gru.grupo_familia = '18'
+                    -- where gru.grupo_familia = '2'
+                    where gru.grupo_familia = '18'
                     ";
   $queryImpresora = mysqli_query($conexion, $sqlImpresora);
 
@@ -61,8 +61,8 @@
                     on pro.producto_grupo = gru.grupo_id
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
-                 where gru.grupo_familia = '8'
-                 -- where gru.grupo_familia = '14'
+                --  where gru.grupo_familia = '8'
+                 where gru.grupo_familia = '14'
                  ";
   $queryCamara = mysqli_query($conexion, $sqlCamara);
 ?>
