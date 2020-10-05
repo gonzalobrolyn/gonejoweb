@@ -40,12 +40,8 @@
          <td><b>MODELO</b></td>
          <td><b>DESCRIPCION</b></td>
          <td><b>CANTIDAD</b></td>
-         <td><b>P FACTURA</b></td>
          <td><b>P LLEGADA</b></td>
-         <td><b>P EMPRESA</b></td>
          <td><b>P TRASPASO</b></td>
-         <td><b>P CANTIDAD</b></td>
-         <td><b>P REBAJA</b></td>
          <td><b>P VENTA</b></td>
       </tr>
       <?php while($ver=mysqli_fetch_row($queryPro)): ?>
@@ -56,12 +52,8 @@
          <td><?php echo $ver[4]; ?></td>
          <td><?php echo $ver[5]; ?></td>
          <td><?php echo $ver[6]; ?></td>
-         <td><?php echo $ver[7]; ?></td>
          <td><?php echo $ver[8]; ?></td>
-         <td><?php echo $ver[9]; ?></td>
          <td><?php echo $ver[10]; ?></td>
-         <td><?php echo $ver[11]; ?></td>
-         <td><?php echo $ver[12]; ?></td>
          <td><?php echo $ver[13]; ?></td>
       </tr>
       <?php endwhile; ?>

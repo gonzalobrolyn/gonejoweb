@@ -93,7 +93,7 @@
                                 movimi_fecha,
                                 movimi_persona_usu,
                                 movimi_caja)
-                        values ('$movi[0]',
+                        values ('$movi[0]'
                                 '$movi[1]',
                                 '$efectivoCaja',
                                 '$movi[2]',

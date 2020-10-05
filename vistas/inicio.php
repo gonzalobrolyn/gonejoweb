@@ -21,24 +21,22 @@
                        from familia";
       $rFamilia = mysqli_query($conexion, $sqlFamilia);
 
-      $sqlDNI = "SELECT persona_id,
-                        persona_dni
-                   from persona
-                  where persona_dni <> 'NULL'";
-      $rDNI = mysqli_query($conexion, $sqlDNI);
-
-      $sqlRUC = "SELECT persona_id,
-                        persona_ruc
-                   from persona
-                  where persona_ruc <> 'NULL'";
-      $rRUC = mysqli_query($conexion, $sqlRUC);
+      $sqlCliente = "SELECT persona_id,
+                            persona_dni,
+                            persona_ruc
+                       from persona";
+      $rCliente = mysqli_query($conexion, $sqlCliente);
 
       $sqlBusqueda = "SELECT alm.almacen_id,
+                             pro.producto_codigo,
+                             mar.marca_nombre,
                              pro.producto_modelo,
-                             pro.producto_codigo
+                             pro.producto_descripcion
                         from almacen as alm
                   inner join producto as pro
                           on alm.almacen_producto = pro.producto_id
+                  inner join marca as mar
+                          on pro.producto_marca = mar.marca_id
                        where alm.almacen_caja = '$idCaja'";
       $rProducto = mysqli_query($conexion, $sqlBusqueda);
 
@@ -76,20 +74,10 @@
                   <hr>
                   <h4 style="text-align: center">Datos del Cliente</h4>
                   <form id="frmCliente" style="text-align: center">
-                    <select class="form-control input-sm" id="dniSelect" name="dniSelect" title="Ingresa DNI">
-                     <option value="A">Ingresa DNI</option>
-                     <?php while ($verDNI=mysqli_fetch_row($rDNI)): ?>
-                        <?php if ($verDNI[1] <> ""): ?>
-                          <option value="<?php echo $verDNI[0]; ?>"><?php echo $verDNI[1]; ?></option>
-                        <?php endif; ?>
-                     <?php endwhile; ?>
-                    </select><p></p>
-                    <select class="form-control input-sm" id="rucSelect" name="rucSelect" title="Ingresa RUC">
-                     <option value="A">Ingresa RUC</option>
-                     <?php while ($verRUC=mysqli_fetch_row($rRUC)): ?>
-                        <?php if ($verRUC[1] <> ""): ?>
-                          <option value="<?php echo $verRUC[0]; ?>"><?php echo $verRUC[1]; ?></option>
-                        <?php endif; ?>
+                    <select class="form-control input-sm" id="clienteSelect" name="clienteSelect" title="Buscar DNI - RUC">
+                     <option value="A">Buscar DNI - RUC</option>
+                     <?php while ($verCliente=mysqli_fetch_row($rCliente)): ?>
+                        <option value="<?php echo $verCliente[0]; ?>"><?php echo $verCliente[1]." ".$verCliente[2]; ?></option>
                      <?php endwhile; ?>
                     </select><p></p>
                     <input type="text" readonly name="nombre" id="nombre" placeholder="Nombre" title="Nombre" class="form-control input-sm"><p></p>
@@ -121,10 +109,10 @@
                      <p></p>
                      <label>Buscar Producto:</label>
                      <select class="form-control" name="producto" id="producto">
-                        <option value="A">Ingresa Modelo</option>
+                        <option value="A">Buscar producto</option>
                         <?php while($verProd=mysqli_fetch_row($rProducto)): ?>
                         <option value="<?php echo $verProd[0]; ?>">
-                        <?php echo $verProd[2]." ".$verProd[1];  ?>
+                        <?php echo $verProd[1]." ".$verProd[2]." ".$verProd[3]." ".$verProd[4];  ?>
                         </option>
                         <?php endwhile; ?>
                      </select><p></p>
@@ -195,27 +183,15 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
-      $('#dniSelect').change(function(){
+      $('#clienteSelect').change(function(){
          $.ajax({
             type: "POST",
-            data: "idPersona=" + $('#dniSelect').val(),
+            data: "idPersona=" + $('#clienteSelect').val(),
             url: "../procesos/personas/llenarFrmPersona.php",
             success:function(r){
                dato=jQuery.parseJSON(r);
                $('#nombre').val(dato['nombreP']);
                $('#apellido').val(dato['apellidoP']);
-               $('#celular').val(dato['celularP']);
-            }
-         });
-      });
-
-      $('#rucSelect').change(function(){
-         $.ajax({
-            type: "POST",
-            data: "idPersona=" + $('#rucSelect').val(),
-            url: "../procesos/personas/llenarFrmPersona.php",
-            success:function(r){
-               dato=jQuery.parseJSON(r);
                $('#celular').val(dato['celularP']);
                $('#razon').val(dato['razonP']);
                $('#direccion').val(dato['direccionP']);
@@ -247,6 +223,7 @@
 				success:function(r){
 					if(r>1){
 						$('#frmNuevoPersona')[0].reset();
+                  $('#modalNuevoCliente').modal("hide");
 						alertify.success("Agregado con exito.");
 					}else{
 						alertify.error("Fallo al agregar.");
@@ -271,6 +248,7 @@
             success:function(r){
                if(r>1){
                   $('#frmNuevoEmpresa')[0].reset();
+                  $('#modalNuevoCliente').modal("hide");
                   alertify.success("Agregado con exito.");
                }else{
                   alertify.error("Fallo al agregar.");
@@ -328,8 +306,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
       $('#cargaTablaVentas').load("tablas/tablaVentasTmp.php");
-      $('#dniSelect').select2();
-      $('#rucSelect').select2();
+      $('#clienteSelect').select2();
       $('#producto').select2();
   });
 </script>

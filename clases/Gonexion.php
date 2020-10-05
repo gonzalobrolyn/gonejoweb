@@ -3,7 +3,7 @@
 	class conectar{
 		private $servidor="localhost";
 		private $usuario="super";
-		private $password="gonza";
+		private $password="ozLEwN3idTbAg9Zr";
 		private $bd="gunidad";
 
 		public function conexion(){

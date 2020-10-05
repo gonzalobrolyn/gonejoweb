@@ -19,8 +19,8 @@
                     on pro.producto_grupo = gru.grupo_id
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
-                    -- where gru.grupo_familia = '1'
-                 where gru.grupo_familia = '29'
+                    where gru.grupo_familia = '1'
+                --  where gru.grupo_familia = '29'
                 ";
   $queryLaptop = mysqli_query($conexion, $sqlLaptop);
 
@@ -40,8 +40,8 @@
                        on pro.producto_grupo = gru.grupo_id
                inner join marca as mar
                        on pro.producto_marca = mar.marca_id
-                    -- where gru.grupo_familia = '2'
-                    where gru.grupo_familia = '18'
+                    where gru.grupo_familia = '2'
+                    -- where gru.grupo_familia = '18'
                     ";
   $queryImpresora = mysqli_query($conexion, $sqlImpresora);
 
@@ -61,8 +61,8 @@
                     on pro.producto_grupo = gru.grupo_id
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
-                --  where gru.grupo_familia = '8'
-                 where gru.grupo_familia = '14'
+                 where gru.grupo_familia = '8'
+                --  where gru.grupo_familia = '14'
                  ";
   $queryCamara = mysqli_query($conexion, $sqlCamara);
 ?>
@@ -72,7 +72,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NextGo</title>
+  <title>Tec + House</title>
   <link rel="icon" type="image/png" href="imagenes/mifavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Muli:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
@@ -88,52 +88,19 @@
     
     <div class="header__logo">
       <a href="./">
-        <img class="header__img" src="./assets/logo-nextgo.png" alt="Logo">
+        <img class="header__img" src="./imagenes/monitor.png" alt="Logo">
       </a>
     </div>
-    <div class="header__list">
-      <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Clientes</a></li>
-        <li><a href="#">Trabaja con Nosotros</a></li>
-        <li><a href="#">Libro de Reclamaciones</a></li>
-        <li><a href="#">Modalidades de Pago</a></li>
-        <li><a href="#">Politicas de Garantia</a></li>
-        <li><a href="#">Quienes Somos</a></li>
-      </ul>
-    </div>
     <div class="header__social">
+      <span>Horario de atención: Lunes a Sábado de 9:00 a.m. a 7:00 p.m.</span>
       <ul>
-        <li><a href="#"><img src="./assets/icon-whatsapp-b.png" alt="whatsapp-icon"></a></li>
-        <li><a href="#"><img src="./assets/icon-facebook-b.png" alt="facebook-icon"></a></li>
-        <li><a href="#"><img src="./assets/icon-instagram-b.png" alt="instagram-icon"></a></li>
-        <li><a href="#"><img src="./assets/icon-twitter-b.png" alt="twitter-icon"></a></li>
-        <li><a href="#"><img src="./assets/icon-youtube-b.png" alt="youtube-icon"></a></li>
-        <li><a href="#"><img src="./assets/icon-entrega-b.png" alt="entrega-icon"></a></li>
+        <!-- <li><a href="#"><img src="./assets/icon-facebook-b.png" alt="facebook-icon"></a></li> -->
+        <!-- <li><a href="#"><img src="./assets/icon-instagram-b.png" alt="instagram-icon"></a></li> -->
+        <!-- <li><a href="#"><img src="./assets/icon-youtube-b.png" alt="youtube-icon"></a></li> -->
+        <!-- <li><a href="#"><img src="./assets/icon-entrega-b.png" alt="entrega-icon"></a></li> -->
         <li><a href="#" data-toggle="modal" data-target="#modalIngreso"><img src="./assets/icon-user-b.png" alt="user-icon"></a></li>
       </ul>
     </div>
-    <div class="header__menu">
-      <div class="header__menu--productos">
-        <p>PRODUCTOS</p>
-      </div>
-      <div class="header__menu--marcas">
-        <p>MARCAS</p>
-      </div>
-        <div><p>OFERTAS</p></div>
-        <div><p>NOVEDADES</p></div>
-        <div><p>PROMOCIONES</p></div>
-        <div><p>EXCLUSIVOS</p></div>
-        <div><p>CATALOGOS</p></div>
-        <div><p>NOTICIAS</p></div>
-        <div><p>CONTACTENOS</p></div>
-        <div><p>CARRITO</p></div>
-        <div><p>SUCURSALES</p></div>
-    </div> 
-        <ul class="header__menu--productos-lista">
-          <li><a href="/">cuenta</a></li>
-          <li><a href="/">cuenta2</a></li>
-        </ul>
   </header>
 
   <section class="main">
@@ -143,45 +110,24 @@
         <li data-target="#slider" data-slide-to="0" class="active"></li>
         <li data-target="#slider" data-slide-to="1"></li>
         <li data-target="#slider" data-slide-to="2"></li>
-        <li data-target="#slider" data-slide-to="3"></li>
-        <li data-target="#slider" data-slide-to="4"></li>
-        <li data-target="#slider" data-slide-to="5"></li>
       </ol>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="imagenes/imp-epson-l3110.png" alt="Epson L3110">
+          <img src="imagenes/fondo1.png" alt="fondo1">
           <div class="carousel-caption">
             <h3></h3>
           </div>
         </div>
         <div class="item">
-          <img src="imagenes/imp-epson-l3150.jpg" alt="Epson L3150">
+          <img src="imagenes/fondo2.png" alt="fondo2">
           <div class="carousel-caption">
             <h3></h3>
           </div>
         </div>
         <div class="item">
-          <img src="imagenes/imp-epson-l5190.jpg" alt="Epson L5190">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/cam-logitech-c920.jpg" alt="Logitech C920">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/cam-logitech-c922.jpg" alt="Logitech C922">
-          <div class="carousel-caption">
-            <h3></h3>
-          </div>
-        </div>
-        <div class="item">
-          <img src="imagenes/servicio-tecnico.jpg" alt="Servicio Tecnico">
+          <img src="imagenes/fondo3.png" alt="fondo3">
           <div class="carousel-caption">
             <h3></h3>
           </div>
@@ -207,7 +153,7 @@
       </div>
       <div class="contact__item--dato">
         <p>WhatsApp</p>
-        <p>998808010</p>
+        <p>959792871</p>
       </div>
     </div>
     <div class="contact__item">
@@ -216,7 +162,7 @@
       </div>
       <div class="contact__item--dato">
         <p>FonoCompras</p>
-        <p>998808010</p>
+        <p>959792871</p>
       </div>
     </div>
     <div class="contact__item">
@@ -225,18 +171,9 @@
       </div>
       <div class="contact__item--dato">
         <p>Soporte Tecnico</p>
-        <p>051-350505</p>
+        <p>959792871</p>
       </div>
     </div>
-    <!-- <div class="contact__item">
-      <div class="contact__item--logo">
-        <img src="./assets/icon-mensaje.png" alt="Correo">
-      </div>
-      <div class="contact__item--dato">
-        <p>Ventas Online</p>
-        <p>nextgo-ventas@gmail.com</p>
-      </div>
-    </div> -->
   </section>
     
   <h2 class="section-title">Oferta de Laptops</h2>
@@ -377,8 +314,9 @@
 
   <footer class="footer">
     <div class="footer__utility">
-      <a href="#">Centro de atención: Jr. Moquegua # 169 - Ciudad de Puno </a>
-      <a href="#">Horario de atención: Lunes a Sábado de 9:00 a.m. a 9:00 p.m.</a>
+      <a href="#">Modalidades de Pago</a>
+      <a href="#">Politicas de Garantia</a>
+      <a href="#">Quienes Somos</a>
     </div>
     <div class="footer__copyright">
       <a href="#">Todos los derechos reservados <span class="glyphicon glyphicon-copyright-mark"></span> Bermejo Devs.</a> 

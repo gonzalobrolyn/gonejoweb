@@ -16,10 +16,8 @@
                   pro.producto_descripcion,
                   pro.producto_detalle,
                   alm.almacen_cantidad,
-                  alm.almacen_precioempresa,
+                  alm.almacen_preciollegada,
                   alm.almacen_preciotraspaso,
-                  alm.almacen_preciocantidad,
-                  alm.almacen_preciorebaja,
                   alm.almacen_precioventa
              from almacen as alm
        inner join producto as pro
@@ -39,13 +37,13 @@
 <div>
    <div class="col-sm-6" style="text-align: center">
 
-      <p><?php echo 'E'.ceil($ver[7]).'T'.ceil($ver[8]).'C'.ceil($ver[9]).'R'.ceil($ver[10]); ?></p>
+      <p><?php echo 'L'.ceil($ver[7]).'T'.ceil($ver[8]); ?></p>
       <h4><?php echo $ver[1]." - ".$ver[2]; ?></h4>
       <h4><?php echo $ver[3]; ?></h4>
       <p><?php echo $ver[4]; ?></p>
       <p><?php echo $ver[5]; ?></p>
-      <p><?php echo "Cantidad: ".$ver[6]; ?></p>
-      <p><b><?php echo "Precio: S/ ".ceil($ver[11]).".00"; ?></b></p>
+      <h3><b><?php echo "Cantidad: ".$ver[6]; ?></b></h3>
+      <h3><b><?php echo "Precio: S/ ".ceil($ver[9]).".00"; ?></b></h3>
       <form id="frmAgreALista" style="text-align: center" class="form-inline">
          <input type="text" hidden name="idAlmacen" id="idAlmacen" value="<?php echo $idAlma; ?>">
          <input type="number" name="cantidad" id="cantidad" placeholder="Cantidad" title="Cantidad" class="form-control input-sm">

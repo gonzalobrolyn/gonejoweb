@@ -7,27 +7,21 @@
     $c = new conectar();
     $conexion = $c->conexion();
 
-   $sqlCodigo = "SELECT producto_id,
-                        producto_codigo
-                   from producto";
-   $rCodigo = mysqli_query($conexion, $sqlCodigo);
+   $sqlProducto = "SELECT pro.producto_id,
+                        pro.producto_codigo,
+                        mar.marca_nombre,
+                        pro.producto_modelo,
+                        pro.producto_descripcion
+                   from producto as pro
+             inner join marca as mar
+                     on pro.producto_marca = mar.marca_id";
+   $rProducto = mysqli_query($conexion, $sqlProducto);
 
-   $sqlModelo = "SELECT producto_id,
-                        producto_modelo
-                   from producto";
-   $rModelo = mysqli_query($conexion, $sqlModelo);
-
-   $sqlDNI = "SELECT persona_id,
-                     persona_dni
-                from persona
-               where persona_dni <> 'NULL'";
-   $rDNI = mysqli_query($conexion, $sqlDNI);
-
-   $sqlRUC = "SELECT persona_id,
+   $sqlProveedor = "SELECT persona_id,
+                     persona_dni,
                      persona_ruc
-                from persona
-               where persona_ruc <> 'NULL'";
-   $rRUC = mysqli_query($conexion, $sqlRUC);
+                from persona";
+   $rProveedor = mysqli_query($conexion, $sqlProveedor);
 
 ?>
 
@@ -43,23 +37,13 @@
         <div class="col-sm-2">
           <h3>Buscar Producto</h3>
           <form id="frmCompra">
-            <select class="form-control" id="codigoPro" name="codigoPro">
-               <option value="A">Busca por Codigo</option>
+            <select class="form-control" id="productoSelect" name="productoSelect">
+               <option value="A">Buscar Producto</option>
                <?php
-                  while ($verCodigo=mysqli_fetch_row($rCodigo)):
+                  while ($verProducto=mysqli_fetch_row($rProducto)):
                ?>
-                  <option value="<?php echo $verCodigo[0]; ?>">
-                     <?php echo $verCodigo[1]; ?>
-                  </option>
-               <?php endwhile; ?>
-            </select><p></p>
-            <select class="form-control" id="modeloPro" name="modeloPro">
-               <option value="A">Busca por Modelo</option>
-               <?php
-                  while ($verModelo=mysqli_fetch_row($rModelo)):
-               ?>
-                  <option value="<?php echo $verModelo[0]; ?>">
-                     <?php echo $verModelo[1]; ?>
+                  <option value="<?php echo $verProducto[0]; ?>">
+                     <?php echo $verProducto[1]." ".$verProducto[2]." ".$verProducto[3]." ".$verProducto[4]; ?>
                   </option>
                <?php endwhile; ?>
             </select><p></p>
@@ -70,12 +54,8 @@
             <textarea readonly name="descripcionC" id="descripcionC" title="Descripción" placeholder="Descripción" class="form-control"></textarea><p></p>
             <textarea rows="5" readonly name="detalleC" id="detalleC" placeholder="Caracteristicas" title="Caracteristicas" class="form-control"></textarea><p></p>
             <input type="text" name="cantidad" id="cantidad" title="Cantidad" placeholder="Cantidad" class="form-control"><p></p>
-            <input type="text" name="preciofactura" id="preciofactura" title="Precio de Factura" placeholder="Precio de Factura S/" class="form-control"><p></p>
             <input type="text" name="preciollegada" id="preciollegada" title="Precio de Llegada" placeholder="Precio de Llegada S/" class="form-control"><p></p>
-            <input type="text" name="precioempresa" id="precioempresa" title="Precio a Empresas" placeholder="Precio a Empresas S/" class="form-control"><p></p>
             <input type="text" name="preciotraspaso" id="preciotraspaso" title="Precio de Traspaso" placeholder="Precio de Traspaso S/" class="form-control"><p></p>
-            <input type="text" name="preciocantidad" id="preciocantidad" title="Precio por Cantidad" placeholder="Precio por Cantidad S/" class="form-control"><p></p>
-            <input type="text" name="preciorebaja" id="preciorebaja" title="Precio con Rebaja" placeholder="Precio con Rebaja S/" class="form-control"><p></p>
             <input type="text" name="precioventa" id="precioventa" title="Precio de Venta" placeholder="Precio de Venta S/" class="form-control"><p></p>
             <input class="btn btn-default" type="reset" name="Limpiar" value="Limpiar">
             <span class="btn btn-primary" id="btnAgregaCompra">Agregar</span>
@@ -104,20 +84,10 @@
                      <option value="Factura">Factura</option>
                   </select>
                   <input type="text" name="numero" id="numero" title="Número d Comprobante" placeholder="Número d Comprobante" class="form-control">
-               <select class="form-control" id="dniSelect" name="dniSelect" title="Ingresa DNI">
-               <option value="A">Ingresa DNI</option>
-               <?php while ($verDNI=mysqli_fetch_row($rDNI)): ?>
-                  <?php if ($verDNI[1] <> ""): ?>
-                   <option value="<?php echo $verDNI[0]; ?>"><?php echo $verDNI[1]; ?></option>
-                  <?php endif; ?>
-               <?php endwhile; ?>
-               </select>
-               <select class="form-control" id="rucSelect" name="rucSelect" title="Ingresa RUC">
-               <option value="A">Ingresa RUC</option>
-               <?php while ($verRUC=mysqli_fetch_row($rRUC)): ?>
-                  <?php if ($verRUC[1] <> ""): ?>
-                   <option value="<?php echo $verRUC[0]; ?>"><?php echo $verRUC[1]; ?></option>
-                  <?php endif; ?>
+               <select class="form-control" id="proveedorSelect" name="proveedorSelect">
+               <option value="A">Buscar DNI - RUC</option>
+               <?php while ($verProveedor=mysqli_fetch_row($rProveedor)): ?>
+                  <option value="<?php echo $verProveedor[0]; ?>"><?php echo $verProveedor[1]." ".$verProveedor[2]; ?></option>
                <?php endwhile; ?>
                </select>
               </form>
@@ -179,31 +149,11 @@
   $(document).ready(function(){
     $('#cargaTablaCompras').load("tablas/tablaComprasTmp.php");
 
-    $('#codigoPro').change(function(){
+    $('#productoSelect').change(function(){
       document.getElementById("imgProducto").innerHTML="";
       $.ajax({
         type:"POST",
-        data:"idProducto=" + $('#codigoPro').val(),
-        url:"../procesos/productos/llenaFrmProducto.php",
-        success:function(r){
-            dato=jQuery.parseJSON(r);
-
-            $('#familiaC').val(dato['familia']);
-            $('#grupoC').val(dato['grupo']);
-            $('#marcaC').val(dato['marca']);
-            $('#descripcionC').val(dato['descripcion']);
-            $('#detalleC').val(dato['detalle']);
-
-            $('#imgProducto').prepend('<img height="120" class="img-thumbnail" id="imagenP" src="' + dato['ruta'] + '" />');
-        }
-      });
-    });
-
-    $('#modeloPro').change(function(){
-      document.getElementById("imgProducto").innerHTML="";
-      $.ajax({
-        type:"POST",
-        data:"idProducto=" + $('#modeloPro').val(),
+        data:"idProducto=" + $('#productoSelect').val(),
         url:"../procesos/productos/llenaFrmProducto.php",
         success:function(r){
             dato=jQuery.parseJSON(r);
@@ -221,7 +171,7 @@
 
     $('#btnAgregaCompra').click(function(){
       vacios = validarFrmVacio('frmCompra');
-      if (vacios > 1) {
+      if (vacios > 0) {
         alertify.alert("Debes llenar cantidad y precios.");
         return false;
       }
@@ -237,27 +187,15 @@
       });
     });
 
-    $('#dniSelect').change(function(){
+    $('#proveedorSelect').change(function(){
       $.ajax({
           type: "POST",
-          data: "idPersona=" + $('#dniSelect').val(),
+          data: "idPersona=" + $('#proveedorSelect').val(),
           url: "../procesos/personas/llenarFrmPersona.php",
           success:function(r){
              dato=jQuery.parseJSON(r);
              $('#nombre').val(dato['nombreP']);
              $('#apellido').val(dato['apellidoP']);
-             $('#celular').val(dato['celularP']);
-          }
-      });
-    });
-
-    $('#rucSelect').change(function(){
-      $.ajax({
-          type: "POST",
-          data: "idPersona=" + $('#rucSelect').val(),
-          url: "../procesos/personas/llenarFrmPersona.php",
-          success:function(r){
-             dato=jQuery.parseJSON(r);
              $('#celular').val(dato['celularP']);
              $('#razon').val(dato['razonP']);
              $('#direccion').val(dato['direccionP']);
@@ -367,10 +305,8 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('#modeloPro').select2();
-    $('#codigoPro').select2();
-    $('#dniSelect').select2();
-    $('#rucSelect').select2();
+    $('#productoSelect').select2();
+    $('#proveedorSelect').select2();
   });
 </script>
 

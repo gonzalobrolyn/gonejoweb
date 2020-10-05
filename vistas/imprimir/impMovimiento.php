@@ -44,7 +44,7 @@
 ?>
 
 <div class="container">
-   <h2 style="text-align: center">NEXTGO</h2>
+   <h2 style="text-align: center">Blue Store</h2>
    <h4 style="text-align: center">
       <?php echo 'Nombre: '.$ver[3]." ".$ver[4]." ".$ver[5]; ?> <br>
       <?php echo 'Documento: '.$ver[6]; ?> <br>

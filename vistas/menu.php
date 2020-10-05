@@ -30,30 +30,23 @@
 
       <div id="main-nav" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-left">
-          <li><a href="adelanto.php">
+          <!-- <li><a href="adelanto.php">
             <span class="glyphicon glyphicon-piggy-bank"></span> Adelanto</a>
+          </li> -->
+          <?php if ($_SESSION['usuarioCargo']=="Empresa" || $_SESSION['usuarioCargo']=="Administrador"): ?>          
+            <li><a href="compra.php">
+              <span class="glyphicon glyphicon-plus"></span> Compra</a>
+            </li>
+          <?php endif; ?>
+          <!-- <li><a href="servicio.php">
+            <span class="glyphicon glyphicon-hdd"></span> Servicio</a>
+          </li> -->
+          <li><a href="diario.php">
+             <span class="glyphicon glyphicon-list-alt"></span> Diario</a>
           </li>
           <li><a href="inicio.php">
             <span class="glyphicon glyphicon-shopping-cart"></span> Venta</a>
           </li>
-          <li><a href="servicio.php">
-            <span class="glyphicon glyphicon-hdd"></span> Servicio</a>
-          </li>
-          <li><a href="diario.php">
-             <span class="glyphicon glyphicon-list-alt"></span> Diario</a>
-          </li>
-          <?php if ($_SESSION['usuarioCargo']=="Empresa" || $_SESSION['usuarioCargo']=="Administrador"): ?>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-plus"></span> Modulos <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="deposito.php">Depositar y Comprar</a></li>
-              <li><a href="compra.php">Compra en Efectivo</a></li>
-              <li><a href="#">Compra por Pagar</a></li>
-              <li><a href="#">Venta por Cobrar</a></li>
-              <li><a href="#">Pagos Diversos</a></li>
-            </ul>
-         </li>
-          <?php endif; ?>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

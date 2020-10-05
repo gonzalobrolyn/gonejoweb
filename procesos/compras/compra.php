@@ -12,19 +12,21 @@
 		$comprobante = $_POST['comprobante'];
 		$numero = $_POST['numero'];
     $total = 0;
+		
+		if ($_POST['proveedorSelect'] > 0) {
+			 $docu = $_POST['proveedorSelect'];
+		} else {
+			 $docu = 1;
+		}
 
-      foreach (@$listaCompra as $key) {
-         $d = explode("||", @$key);
-         $total = $total + $d[8]*$d[9];
-      }
+    foreach (@$listaCompra as $key) {
+       $d = explode("||", @$key);
+       $total = $total + $d[8]*$d[9];
+    }
 
-      if ($_POST['dniSelect'] > 0) {
-         $docu = $_POST['dniSelect'];
-      } else if ($_POST['rucSelect'] > 0) {
-			$docu = $_POST['rucSelect'];
-      } else {
-         $docu = 1;
-      }
+		if ($numero == ""){
+			$numero = 000;
+		}
 
 		$datos = array(
 			"Compra",
