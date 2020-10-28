@@ -16,10 +16,8 @@
          $total = $total + $d[5]*$d[6];
       }
 
-		if ($_POST['dniSelect'] > 0) {
-         $docu = $_POST['dniSelect'];
-      } else if ($_POST['rucSelect'] > 0) {
-			$docu = $_POST['rucSelect'];
+		if ($_POST['clienteSelect'] > 0) {
+         $docu = $_POST['clienteSelect'];
       } else {
          $docu = 1;
       }

@@ -30,7 +30,7 @@
         order by mov.movimiento_id asc ";
   $result = mysqli_query($conexion, $sql);
 ?>
-<h2 style="text-align: center">Blue Store</h2>
+<h2 style="text-align: center">SpaceTec Jr. Moquegua 195</h2>
 <h4 style="text-align: center">Cuenta del <?php echo $hoy; ?></h4>
 <table class="table table-hover table-condensed table-bordered" style="text-align: center">
    <tr>

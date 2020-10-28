@@ -296,7 +296,7 @@
         <div class="panel panel-body" style="text-align: center">
           <p><img src="imagenes/monitor.png" height="222"></p>
           <form id="frmEntrar">
-            <input type="text" class="form-control input-sm" name="usuario" id="usuario" title="Usuario" placeholder="Usuario"><p></p>
+            <input type="text" class="form-control input-sm" name="usuario" id="usuario" title="Usuario" placeholder="Usuario" autofocus><p></p>
             <input type="password" class="form-control input-sm" name="clave" id="clave" title="Contraseña" placeholder="Contraseña"><p></p>
             <input type="password" class="form-control input-sm" name="llave" id="llave" title="Llave" placeholder="Llave"><p></p>
             <input type="reset" class="btn btn-default" name="limpiar" value="Limpiar" >
