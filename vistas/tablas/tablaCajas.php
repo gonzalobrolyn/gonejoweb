@@ -4,7 +4,7 @@
   require_once "../../clases/Gonexion.php";
   $c = new conectar();
   $conexion = $c->conexion();
-  $idUsuario = $_SESSION['usuarioID'];
+  $usuarioCaja = $_SESSION['usuarioCaja'];
 
   $sql = "SELECT caj.caja_id,
                  caj.caja_sede,
@@ -16,7 +16,7 @@
             from caja as caj
       inner join imagen as ima
               on caj.caja_logo = ima.imagen_id
-           where caj.caja_usuario = '$idUsuario'";
+           where caj.caja_id = '$usuarioCaja'";
   $result = mysqli_query($conexion, $sql);
 ?>
 
