@@ -24,7 +24,7 @@
 while($ver=mysqli_fetch_row($result)):
 
    $sqlInversion = "SELECT almacen_cantidad,
-                           almacen_preciofactura
+                           almacen_preciollegada
                       from almacen
                      where almacen_caja = '$ver[0]'";
    $queryInv = mysqli_query($conexion, $sqlInversion);

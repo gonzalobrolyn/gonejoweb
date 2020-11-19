@@ -72,7 +72,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tec + House</title>
+  <title>SpaceTec</title>
   <link rel="icon" type="image/png" href="imagenes/mifavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Muli:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
@@ -92,7 +92,7 @@
       </a>
     </div>
     <div class="header__social">
-      <span>Horario de atención: Lunes a Sábado de 9:00 a.m. a 7:00 p.m.</span>
+      <span>Horario de atención: Lunes a Sábado de 9:00 a.m. a 8:00 p.m.</span>
       <ul>
         <!-- <li><a href="#"><img src="./assets/icon-facebook-b.png" alt="facebook-icon"></a></li> -->
         <!-- <li><a href="#"><img src="./assets/icon-instagram-b.png" alt="instagram-icon"></a></li> -->
@@ -153,25 +153,25 @@
       </div>
       <div class="contact__item--dato">
         <p>WhatsApp</p>
-        <p>959792871</p>
+        <p>923 903 399</p>
       </div>
     </div>
     <div class="contact__item">
       <div class="contact__item--logo">
-        <img src="./assets/icon-telefono.png" alt="Celular">
+        <img src="./assets/icon-whatsapp.png" alt="WhatsApp">
       </div>
       <div class="contact__item--dato">
-        <p>FonoCompras</p>
-        <p>959792871</p>
+        <p>WhatsApp</p>
+        <p>948 904 886</p>
       </div>
     </div>
     <div class="contact__item">
       <div class="contact__item--logo">
-        <img src="./assets/icon-auricular.png" alt="Soporte">
+        <img src="./assets/icon-whatsapp.png" alt="WhatsApp">
       </div>
       <div class="contact__item--dato">
-        <p>Soporte Tecnico</p>
-        <p>959792871</p>
+        <p>WhatsApp</p>
+        <p>959 792 871</p>
       </div>
     </div>
   </section>

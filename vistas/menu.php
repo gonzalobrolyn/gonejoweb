@@ -64,9 +64,7 @@
                <li><a href="familia.php">Productos</a></li>
                <li><a href="marca.php">Marcas</a></li>
                <li><a href="usuario.php">Usuarios</a></li>
-               <?php if ($_SESSION['usuarioCargo']=="Empresa"): ?>
                <li><a href="caja.php">Cajas</a></li>
-               <?php endif; ?>
             </ul>
           </li>
           <?php endif; ?>
