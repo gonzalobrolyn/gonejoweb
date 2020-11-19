@@ -1,7 +1,7 @@
 
 <?php
   session_start();
-  if(isset($_SESSION['usuarioNombre']) and $_SESSION['usuarioCargo']=="Empresa"){
+  if(isset($_SESSION['usuarioNombre']) && ($_SESSION['usuarioCargo']=="Empresa" || $_SESSION['usuarioCargo']=="Administrador")){
      require_once "menu.php";
 ?>
 
