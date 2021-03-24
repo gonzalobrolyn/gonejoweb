@@ -20,6 +20,7 @@
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
                     where gru.grupo_familia = '1'
+                    and alm.almacen_cantidad > 0
                 --  where gru.grupo_familia = '29'
                 ";
   $queryLaptop = mysqli_query($conexion, $sqlLaptop);
@@ -41,6 +42,7 @@
                inner join marca as mar
                        on pro.producto_marca = mar.marca_id
                     where gru.grupo_familia = '2'
+                    and alm.almacen_cantidad > 0
                     -- where gru.grupo_familia = '18'
                     ";
   $queryImpresora = mysqli_query($conexion, $sqlImpresora);
@@ -61,7 +63,8 @@
                     on pro.producto_grupo = gru.grupo_id
             inner join marca as mar
                     on pro.producto_marca = mar.marca_id
-                 where gru.grupo_familia = '8'
+                 where gru.grupo_familia = '3'
+                 and alm.almacen_cantidad > 0
                 --  where gru.grupo_familia = '14'
                  ";
   $queryCamara = mysqli_query($conexion, $sqlCamara);
@@ -212,7 +215,7 @@
     ?>
   </section>
 
-  <h2 class="section-title">Oferta de Impresoras</h2>
+  <h2 class="section-title">Oferta de impresoras y mas</h2>
 
   <section class="section">
 
@@ -247,8 +250,6 @@
       endwhile
     ?>
   </section>
-
-  <h2 class="section-title">Oferta de Camaras Web</h2>
 
   <section class="section">
 

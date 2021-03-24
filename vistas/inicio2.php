@@ -44,7 +44,8 @@
                                             pro.producto_modelo,
                                             pro.producto_codigo,
                                             pro.producto_detalle,
-                                            mar.marca_nombre
+                                            mar.marca_nombre,
+                                            alm.almacen_precioventa
                                        from almacen as alm
                                  inner join producto as pro
                                          on alm.almacen_producto = pro.producto_id
@@ -62,6 +63,7 @@
                            <td><?php echo $verPro[2]; ?></td>
                            <td><?php echo $verPro[4]; ?></td>
                            <td><?php echo "Stok ".$verPro[1]; ?></td>
+                           <td><?php echo "S/ ".$verPro[6]; ?></td>
                            <td>
                               <a class="btn btn-xs btn-info" href="detalle.php?idProAlm=<?php echo $verPro[0] ?>">
                                  <span class="glyphicon glyphicon-eye-open"></span> Ver

@@ -12,10 +12,8 @@
                      pro.producto_descripcion,
                      pro.producto_detalle,
                      alm.almacen_cantidad,
-                     alm.almacen_precioempresa,
+                     alm.almacen_preciollegada,
                      alm.almacen_preciotraspaso,
-                     alm.almacen_preciocantidad,
-                     alm.almacen_preciorebaja,
                      alm.almacen_precioventa,
                      alm.almacen_producto
                 from almacen as alm
@@ -35,7 +33,7 @@
                         especifi_nombre,
                         especifi_detalle
                    from especifi
-                  where especifi_producto = '$ver[12]'";
+                  where especifi_producto = '$ver[10]'";
       $consultaEsp = mysqli_query($conexion, $sqlEsp);
 ?>
 
@@ -44,7 +42,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NextGo</title>
+  <title>SpaceTec</title>
   <link rel="icon" type="image/png" href="imagenes/mifavicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Muli:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="librerias/bootstrap/css/bootstrap.css">
@@ -60,46 +58,21 @@
     
     <div class="header__logo">
       <a href="./">
-        <img class="header__img" src="./assets/logo-nextgo.png" alt="Logo">
+        <img class="header__img" src="./imagenes/monitor.png" alt="Logo">
       </a>
     </div>
-    <div class="header__list">
-      <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Clientes</a></li>
-        <li><a href="#">Trabaja con Nosotros</a></li>
-        <li><a href="#">Libro de Reclamaciones</a></li>
-        <li><a href="#">Modalidades de Pago</a></li>
-        <li><a href="#">Politicas de Garantia</a></li>
-        <li><a href="#">Quienes Somos</a></li>
-      </ul>
-    </div>
     <div class="header__social">
+      <span>Horario de atención: Lunes a Sábado de 9:00 a.m. a 8:00 p.m.</span>
       <ul>
-        <li><a href="#"><img src="./assets/icon-whatsapp-b.png" alt="whatsapp-icon"></a></li>
+        <!-- <li><a href="#"><img src="./assets/icon-whatsapp-b.png" alt="whatsapp-icon"></a></li>
         <li><a href="#"><img src="./assets/icon-facebook-b.png" alt="facebook-icon"></a></li>
         <li><a href="#"><img src="./assets/icon-instagram-b.png" alt="instagram-icon"></a></li>
         <li><a href="#"><img src="./assets/icon-twitter-b.png" alt="twitter-icon"></a></li>
         <li><a href="#"><img src="./assets/icon-youtube-b.png" alt="youtube-icon"></a></li>
-        <li><a href="#"><img src="./assets/icon-entrega-b.png" alt="entrega-icon"></a></li>
+        <li><a href="#"><img src="./assets/icon-entrega-b.png" alt="entrega-icon"></a></li> -->
         <li><a href="#" data-toggle="modal" data-target="#modalIngreso"><img src="./assets/icon-user-b.png" alt="user-icon"></a></li>
       </ul>
     </div>
-    <div class="header__menu">
-      <ul>
-        <li><a href="#">PRODUCTOS</a></li>
-        <li><a href="#">MARCAS</a></li>
-        <li><a href="#">OFERTAS</a></li>
-        <li><a href="#">NOVEDADES</a></li>
-        <li><a href="#">PROMOCIONES</a></li>
-        <li><a href="#">EXCLUSIVOS</a></li>
-        <li><a href="#">CATALOGOS</a></li>
-        <li><a href="#">NOTICIAS</a></li>
-        <li><a href="#">CONTACTENOS</a></li>
-        <li><a href="#">CARRITO</a></li>
-        <li><a href="#">SUCURSALES</a></li>
-      </ul>
-    </div> 
   </header>
 
   <section class="main" style="background: white">
@@ -137,7 +110,7 @@
     <div class="row" style="text-align: center">
       <div class="col-md-12">
         <p><?php echo "Disponible: ".$ver[6]; ?></p>
-        <p><?php echo "Precio: S/ ".ceil($ver[11]).".00"; ?></p>
+        <p><?php echo "Precio: S/ ".ceil($ver[9]).".00"; ?></p>
       </div>
     </div>
     
@@ -150,25 +123,25 @@
       </div>
       <div class="contact__item--dato">
         <p>WhatsApp</p>
-        <p>998808010</p>
+        <p>923903399</p>
       </div>
     </div>
     <div class="contact__item">
       <div class="contact__item--logo">
-        <img src="./assets/icon-telefono.png" alt="Celular">
+        <img src="./assets/icon-whatsapp.png" alt="Celular">
       </div>
       <div class="contact__item--dato">
-        <p>FonoCompras</p>
-        <p>998808010</p>
+        <p>WhatsApp</p>
+        <p>948904886</p>
       </div>
     </div>
     <div class="contact__item">
       <div class="contact__item--logo">
-        <img src="./assets/icon-auricular.png" alt="Soporte">
+        <img src="./assets/icon-whatsapp.png" alt="Soporte">
       </div>
       <div class="contact__item--dato">
-        <p>Soporte Tecnico</p>
-        <p>051-350505</p>
+        <p>WhatsApp</p>
+        <p>959792871</p>
       </div>
     </div>
     <!-- <div class="contact__item">
@@ -212,8 +185,8 @@
 
   <footer class="footer">
     <div class="footer__utility">
-      <a href="#">Centro de atención: Jr. Moquegua # 169 - Ciudad de Puno </a>
-      <a href="#">Horario de atención: Lunes a Sábado de 9:00 a.m. a 9:00 p.m.</a>
+      <a href="#">Centro de atención: Jr. Moquegua # 195 - Ciudad de Puno </a>
+      <a href="#">Horario de atención: Lunes a Sábado de 9:00 a.m. a 8:00 p.m.</a>
     </div>
     <div class="footer__copyright">
       <a href="#">Todos los derechos reservados <span class="glyphicon glyphicon-copyright-mark"></span> Bermejo Devs.</a> 

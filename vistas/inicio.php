@@ -31,7 +31,9 @@
                              pro.producto_codigo,
                              mar.marca_nombre,
                              pro.producto_modelo,
-                             pro.producto_descripcion
+                             pro.producto_descripcion,
+                             alm.almacen_cantidad,
+                             alm.almacen_precioventa
                         from almacen as alm
                   inner join producto as pro
                           on alm.almacen_producto = pro.producto_id
@@ -112,7 +114,7 @@
                         <option value="A">Buscar producto</option>
                         <?php while($verProd=mysqli_fetch_row($rProducto)): ?>
                         <option value="<?php echo $verProd[0]; ?>">
-                        <?php echo $verProd[1]." ".$verProd[2]." ".$verProd[3]." ".$verProd[4];  ?>
+                        <?php echo $verProd[1]." ".$verProd[2]." ".$verProd[3]." ".$verProd[4]." Cant: ".$verProd[5]." Precio: S/ ".$verProd[6];  ?>
                         </option>
                         <?php endwhile; ?>
                      </select><p></p>
